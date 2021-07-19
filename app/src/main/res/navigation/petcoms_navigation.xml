@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/petcoms_navigation"
-    app:startDestination="@id/petcomsFragment">
+>
 
-    <fragment
-        android:id="@+id/petcomsFragment"
-        android:name="kevin.android.petcoms.fragments.petcoms.PetcomsFragment"
-        android:label="fragment_petcoms"
-        tools:layout="@layout/fragment_petcoms" />
     <fragment
         android:id="@+id/recordFragment"
         android:name="kevin.android.petcoms.fragments.record.RecordFragment"

@@ -16,7 +16,12 @@ class RecordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_record, container, false)
+        val view = inflater.inflate(R.layout.fragment_record, container, false)
+
+
+
+
+        return view
     }
 
 }

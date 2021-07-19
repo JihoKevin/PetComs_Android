@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        putBottomNavigation()
+        putBottomNavigation() // 바텀 네비게이션 세팅
     }
 
     private fun putBottomNavigation() { // bottomNavigation menu setting

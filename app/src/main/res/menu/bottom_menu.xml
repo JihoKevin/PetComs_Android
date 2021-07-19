@@ -6,10 +6,7 @@
         android:title="기록" />
     <item
         android:id="@+id/statisticsFragment"
-        android:title="통계" />
-    <item
-        android:id="@+id/petcomsFragment"
-        android:title="펫컴즈" />
+        android:title="분석" />
     <item
         android:id="@+id/diaryFragment"
         android:title="다이어리" />

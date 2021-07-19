@@ -1,4 +1,4 @@
-package kevin.android.petcoms.fragments.network
+package kevin.android.petcoms.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

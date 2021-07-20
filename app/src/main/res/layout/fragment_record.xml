@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/recordFragment"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.record.RecordFragment">
-
-    <TextView
-
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/recordFragment"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="record tab" />
+        tools:context=".fragments.record.RecordFragment" xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</FrameLayout>
+    <TextView
+            android:id="@+id/txtRecord"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="record tab"/>
+
+    <com.github.mikephil.charting.charts.BarChart
+            app:layout_constraintTop_toBottomOf="@+id/txtRecord"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:id="@+id/examChart"
+            android:layout_width="0dp"
+            android:layout_height="200dp"/>
+
+    <EditText
+            android:id="@+id/editInput"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/examChart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+    />
+
+    <Button
+            android:id="@+id/btnPut"
+            android:text="CLICK"
+            app:layout_constraintTop_toBottomOf="@+id/editInput"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

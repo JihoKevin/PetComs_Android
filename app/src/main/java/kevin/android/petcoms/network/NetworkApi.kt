@@ -5,6 +5,12 @@ import retrofit2.http.GET
 
 interface NetworkApi {
 
+//    @GET("1")
+//    suspend fun getPost(): List<PostModel>
+
     @GET("1")
-    suspend fun getPost(): List<PostModel>
+    suspend fun getPost(): PostModel {
+        return Client.retrofitService.getPost()
+    }
+
 }

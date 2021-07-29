@@ -18,6 +18,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import kevin.android.petcoms.R
 import kevin.android.petcoms.fragments.record.viewmodel.ActionType
 import kevin.android.petcoms.fragments.record.viewmodel.RecordViewModel
+import kevin.android.petcoms.network.Client
 
 /**
  * 2021. 07. 21  AM 01:21
@@ -37,7 +38,6 @@ class RecordFragment : Fragment(), View.OnClickListener {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_record, container, false)
-
 
         val btnClick = view.findViewById<Button>(R.id.btnPut)
         val barChart = view.findViewById<BarChart>(R.id.examChart)
@@ -71,14 +71,9 @@ class RecordFragment : Fragment(), View.OnClickListener {
             entries[0].y = it
             barChart.animateXY(0, 1500)
             barChart.invalidate()
-
         })
 
         btnClick.setOnClickListener(this)
-
-
-
-
 
         return view
     }

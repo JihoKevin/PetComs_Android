@@ -3,12 +3,13 @@ package kevin.android.petcoms.fragments.record.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kevin.android.petcoms.fragments.record.repository.RecordRepository
 
 enum class ActionType{
     CLICK
 }
 
-class RecordViewModel: ViewModel()  {
+class RecordViewModel(private val recordRepository: RecordRepository): ViewModel()  {
     private val _currentValue = MutableLiveData<Float>()
     val currentValue: LiveData<Float>
         get() = _currentValue

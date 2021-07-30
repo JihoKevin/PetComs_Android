@@ -17,8 +17,6 @@ class MainActivity : AppCompatActivity() {
     private var mBinding: ActivityMainBinding? = null // 뷰 바인딩 활용 (findViewById 사용 할 필요 없음) 접근 방법 : binding.id . . .
     private val binding get() = mBinding!! // 매번 null check 할 필요 없이 바인딩 변수 재 선언
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -36,6 +34,5 @@ class MainActivity : AppCompatActivity() {
         mBinding = null
         super.onDestroy()
     }
-}
 
-//Git Push, Pull 테스트 주석
+}

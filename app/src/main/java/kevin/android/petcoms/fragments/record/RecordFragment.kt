@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.github.mikephil.charting.charts.BarChart
@@ -15,6 +16,7 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.material.tabs.TabLayoutMediator
 import kevin.android.petcoms.R
 import kevin.android.petcoms.databinding.ActivityMainBinding
 import kevin.android.petcoms.databinding.FragmentDiaryBinding
@@ -35,7 +37,6 @@ class RecordFragment : Fragment() {
     private var mBinding: FragmentRecordBinding? = null // 뷰 바인딩 활용 (findViewById 사용 할 필요 없음) 접근 방법 : binding.id . . .
     private val binding get() = mBinding!! // 매번 null check 할 필요 없이 바인딩 변수 재 선언
 
-
     lateinit var recordViewModel: RecordViewModel
 //    val editInput = view?.findViewById<EditText>(R.id.editInput)
 
@@ -45,10 +46,8 @@ class RecordFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         mBinding = FragmentRecordBinding.inflate(inflater, container, false)
-        binding.recordViewPager
 
-
-
+        attachViewPager()
 
 //        val btnClick = view.findViewById<Button>(R.id.btnPut)
 //        val barChart = view.findViewById<BarChart>(R.id.examChart)
@@ -87,6 +86,18 @@ class RecordFragment : Fragment() {
 //        btnClick.setOnClickListener(this)
 
         return binding.root
+    }
+
+    private fun attachViewPager() {
+        val viewPagerAdapter = RecordViewPagerAdapter(fragmentManager!!, lifecycle)
+        binding.recordViewPager.adapter = viewPagerAdapter
+        TabLayoutMediator(binding.recordTabLayout, binding.recordViewPager){
+                tab, position ->
+            when(position){
+                0 -> tab.text = "최신순"
+                1 -> tab.text = "인기순"
+            }
+        }.attach()
     }
 
 //    override fun onClick(view: View?) {

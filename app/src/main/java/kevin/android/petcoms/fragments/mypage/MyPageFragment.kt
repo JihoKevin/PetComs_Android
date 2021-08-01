@@ -33,11 +33,11 @@ class MyPageFragment : Fragment() {
             it
         })
 
-        val adapter = MyPetsAdapter()
+//        val adapter = MyPetsAdapter()
 //        val adapter = recyclerView.adapter as MyPetsAdapter
 
-        rv_pets.adapter = adapter
-        rv_pets.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//        rv_pets.adapter = adapter
+//        rv_pets.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
 //        return view
         return fragmentMypageBinding!!.root

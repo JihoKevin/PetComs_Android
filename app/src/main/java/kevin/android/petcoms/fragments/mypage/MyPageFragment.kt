@@ -40,7 +40,7 @@ class MyPageFragment : Fragment() {
 //            it
 //        })
 
-        val adapter = MyPetsAdapter()
+        val adapter = MyPetsAdapter() // 오류부분
 //        val adapter = recyclerView.adapter as MyPetsAdapter
 
         rv_pets.adapter = adapter

@@ -89,7 +89,7 @@ class RecordFragment : Fragment() {
     }
 
     private fun attachViewPager() {
-        val viewPagerAdapter = RecordViewPagerAdapter(fragmentManager!!, lifecycle)
+        val viewPagerAdapter = RecordViewPagerAdapter(requireFragmentManager(), lifecycle)
         binding.recordViewPager.adapter = viewPagerAdapter
         TabLayoutMediator(binding.recordTabLayout, binding.recordViewPager){
                 tab, position ->

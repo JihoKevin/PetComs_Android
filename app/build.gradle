@@ -77,4 +77,7 @@ dependencies {
 
     // viewpager2
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    // circle image view (원형 이미지 표시할 때 필요)
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

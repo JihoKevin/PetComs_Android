@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="viewModel"
-            type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel" />
+            name="myPets"
+            type="kevin.android.petcoms.fragments.mypage.MyPets" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +20,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="@{viewModel.myPetsList.toString()}"
         android:layout_marginStart="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

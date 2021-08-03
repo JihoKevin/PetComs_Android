@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kevin.android.petcoms.MainActivity
@@ -24,6 +22,7 @@ class MyPageFragment : Fragment() {
 //    private var fragmentMypageBinding : FragmentMypageBinding? = null
     lateinit var binding: FragmentMypageBinding
     private lateinit var myPageViewModel: MyPageViewModel
+    private lateinit var myPetsAdapter: MyPetsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -31,20 +30,23 @@ class MyPageFragment : Fragment() {
 //        val view = inflater.inflate(R.layout.fragment_mypage, container, false)
 //        val binding = FragmentMypageBinding.inflate(inflater, container, false)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mypage, container, false)
+        myPetsAdapter = MyPetsAdapter()
+//        binding.rvPets.adapter = myPetsAdapter
         binding.lifecycleOwner = this
 //        fragmentMypageBinding = binding
 
         myPageViewModel = ViewModelProvider(this).get(MyPageViewModel::class.java)
         binding.viewModel = myPageViewModel
+
 //        myPageViewModel.myPetsList.observe(viewLifecycleOwner, Observer{
-//            it
+//            myPetsAdapter.setData(it)
 //        })
 
-        val adapter = MyPetsAdapter() // 오류부분
-//        val adapter = recyclerView.adapter as MyPetsAdapter
-
-        rv_pets.adapter = adapter
-        rv_pets.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//        val adapter = MyPetsAdapter() // 오류부분
+//        val adapter = rv_pets.adapter as MyPetsAdapter
+//
+//        rv_pets.adapter = adapter
+//        rv_pets.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
 //        return view
 //        return fragmentMypageBinding!!.root

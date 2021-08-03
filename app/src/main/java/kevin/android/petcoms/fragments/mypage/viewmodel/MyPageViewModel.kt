@@ -14,10 +14,16 @@ class MyPageViewModel: ViewModel() {
 
     init {
         petsList = arrayListOf(
-            MyPets(myPetsName = "콩순이"),
-            MyPets(myPetsName = "팥순이"),
-            MyPets(myPetsName = "또순이")
+            MyPets("콩순이"),
+            MyPets("팥순이"),
+            MyPets("또순이")
         )
+        _myPetsList.value = petsList
+    }
+
+    fun btnClick(){
+        val myPets = MyPets("탄이")
+        petsList.add(myPets)
         _myPetsList.value = petsList
     }
 

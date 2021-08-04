@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
@@ -22,30 +23,30 @@ import kevin.android.petcoms.databinding.ActivityMainBinding
 import kevin.android.petcoms.databinding.FragmentDiaryBinding
 import kevin.android.petcoms.databinding.FragmentRecordBinding
 import kevin.android.petcoms.fragments.record.adapter.RecordViewPagerAdapter
+import kevin.android.petcoms.fragments.record.repository.RecordRepository
 import kevin.android.petcoms.fragments.record.viewmodel.ActionType
 import kevin.android.petcoms.fragments.record.viewmodel.RecordViewModel
+import kevin.android.petcoms.fragments.record.viewmodel.RecordViewModelFactory
 import kevin.android.petcoms.network.Client
 
-/**
- * 2021. 07. 21  AM 01:21
- *  MpChart를 이용하여 막대 그래프 그리는 UI 로직 구현 시도.
- *  RecordViewModel의 updateValue 함수의 두 번째 매개변수를 직접 숫자로 입력하여 차트의 값을 변하게 하는 것은 성공 하였으나
- *  editText로 시도 할 시 toFloat() 함수를 인식하지 못하고 NumberFormatException 발생..
- **/
 class RecordFragment : Fragment() {
 
     private var mBinding: FragmentRecordBinding? = null // 뷰 바인딩 활용 (findViewById 사용 할 필요 없음) 접근 방법 : binding.id . . .
     private val binding get() = mBinding!! // 매번 null check 할 필요 없이 바인딩 변수 재 선언
 
-    lateinit var recordViewModel: RecordViewModel
-//    val editInput = view?.findViewById<EditText>(R.id.editInput)
+    private lateinit var recordViewModel: RecordViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        mBinding = FragmentRecordBinding.inflate(inflater, container, false)
+        mBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_record, container, false)
+        binding.lifecycleOwner = this
+        var repository = RecordRepository()
+        val viewModelFactory = RecordViewModelFactory(repository)
+
+        recordViewModel = ViewModelProvider(this, viewModelFactory).get(RecordViewModel::class.java)
 
         attachViewPager()
 

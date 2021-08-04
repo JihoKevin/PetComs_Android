@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kevin.android.petcoms.MainActivity
 import kevin.android.petcoms.R
 import kevin.android.petcoms.databinding.FragmentMypageBinding
+import kevin.android.petcoms.fragments.mypage.adapter.MyDiaryAdapter
 import kevin.android.petcoms.fragments.mypage.adapter.MyPetsAdapter
 import kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel
 import kotlinx.android.synthetic.main.fragment_mypage.*
@@ -23,6 +24,7 @@ class MyPageFragment : Fragment() {
     lateinit var binding: FragmentMypageBinding
     private lateinit var myPageViewModel: MyPageViewModel
     private lateinit var myPetsAdapter: MyPetsAdapter
+    private lateinit var myDiaryAdapter: MyDiaryAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -31,6 +33,7 @@ class MyPageFragment : Fragment() {
 //        val binding = FragmentMypageBinding.inflate(inflater, container, false)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mypage, container, false)
         myPetsAdapter = MyPetsAdapter()
+        myDiaryAdapter = MyDiaryAdapter()
 //        binding.rvPets.adapter = myPetsAdapter
         binding.lifecycleOwner = this
 //        fragmentMypageBinding = binding

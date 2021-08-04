@@ -3,6 +3,8 @@ package kevin.android.petcoms.fragments.mypage.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kevin.android.petcoms.R
+import kevin.android.petcoms.fragments.mypage.MyDiary
 import kevin.android.petcoms.fragments.mypage.MyPets
 
 class MyPageViewModel: ViewModel() {
@@ -25,6 +27,22 @@ class MyPageViewModel: ViewModel() {
         val myPets = MyPets("탄이")
         petsList.add(myPets)
         _myPetsList.value = petsList
+    }
+
+
+    private val _myDiaryList = MutableLiveData<ArrayList<MyDiary>>()
+    val myDiaryList : LiveData<ArrayList<MyDiary>>
+        get() = _myDiaryList
+
+    private var DiaryList = ArrayList<MyDiary>()
+
+    init {
+        DiaryList = arrayListOf(
+            MyDiary(DUserImg = R.drawable.ic_settings, DUserNickname = "탄이아빠", DDate = "2020.04.05", DContents = "넘 즐거웡"),
+            MyDiary(DUserImg = R.drawable.ic_settings, DUserNickname = "탄이아빠", DDate = "2020.04.05", DContents = "넘 즐거웡"),
+            MyDiary(DUserImg = R.drawable.ic_settings, DUserNickname = "탄이아빠", DDate = "2020.04.05", DContents = "넘 즐거웡")
+        )
+        _myDiaryList.value = DiaryList
     }
 
 }

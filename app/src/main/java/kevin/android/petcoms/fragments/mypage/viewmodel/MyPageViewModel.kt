@@ -45,4 +45,10 @@ class MyPageViewModel: ViewModel() {
         _myDiaryList.value = DiaryList
     }
 
+    fun fabClick(){
+        val myDiary = MyDiary(DUserImg = R.drawable.ic_settings, "탄이아빠", "2020.04.05", "다이어리 추가 임의 데이터")
+        DiaryList.add(myDiary)
+        _myDiaryList.value = DiaryList
+    }
+
 }

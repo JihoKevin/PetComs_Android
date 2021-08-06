@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_mypage.*
 class MyPageFragment : Fragment() {
 
 //    private var fragmentMypageBinding : FragmentMypageBinding? = null
-    lateinit var binding: FragmentMypageBinding
+    private var binding: FragmentMypageBinding? = null
     private lateinit var myPageViewModel: MyPageViewModel
     private lateinit var myPetsAdapter: MyPetsAdapter
     private lateinit var myDiaryAdapter: MyDiaryAdapter
@@ -35,11 +35,11 @@ class MyPageFragment : Fragment() {
         myPetsAdapter = MyPetsAdapter()
         myDiaryAdapter = MyDiaryAdapter()
 //        binding.rvPets.adapter = myPetsAdapter
-        binding.lifecycleOwner = this
+        binding!!.lifecycleOwner = this
 //        fragmentMypageBinding = binding
 
         myPageViewModel = ViewModelProvider(this).get(MyPageViewModel::class.java)
-        binding.viewModel = myPageViewModel
+        binding!!.viewModel = myPageViewModel
 
 //        myPageViewModel.myPetsList.observe(viewLifecycleOwner, Observer{
 //            myPetsAdapter.setData(it)
@@ -53,7 +53,12 @@ class MyPageFragment : Fragment() {
 
 //        return view
 //        return fragmentMypageBinding!!.root
-        return binding.root
+        return binding!!.root
+    }
+
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
     }
 
 }

@@ -34,6 +34,9 @@ class PopularFragment : Fragment() {
         // 이 부분이 레이아웃 파일에 선언된 변수에 웹서버에서 가져온 값을 붙여주는 최종 부분
         viewModel.getPostViewModel()
 
+
+
+
         return binding.root
     }
 

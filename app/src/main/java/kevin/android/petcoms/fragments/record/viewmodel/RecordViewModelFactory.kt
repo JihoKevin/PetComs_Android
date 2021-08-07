@@ -9,6 +9,6 @@ class RecordViewModelFactory(private val repository: RecordRepository) : ViewMod
         if (modelClass.isAssignableFrom(RecordViewModel::class.java)) {
             return RecordViewModel(repository) as T
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
+        throw IllegalArgumentException("Record ViewModelFactory Exception")
     }
 }

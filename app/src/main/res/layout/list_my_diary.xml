@@ -8,6 +8,9 @@
         <variable
             name="myDiary"
             type="kevin.android.petcoms.fragments.mypage.MyDiary" />
+        <variable
+            name="myPageViewModel"
+            type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +56,7 @@
         android:id="@+id/d_contents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@{myDiary.DContents}"
+        android:text="@{myPageViewModel.postLiveData.body().body.toString()}"
         app:layout_constraintTop_toBottomOf="@+id/d_user_img"
         android:layout_marginTop="10dp"/>
 

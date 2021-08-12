@@ -14,4 +14,9 @@ interface NetworkApi {
         return Client.retrofitService.getPost()
     }
 
+    @GET("2")
+    suspend fun getPost2(): Response<PostModel> {
+        return Client.retrofitService.getPost2()
+    }
+
 }

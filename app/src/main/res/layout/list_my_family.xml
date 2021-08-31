@@ -28,7 +28,8 @@
             android:textSize="24dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_family"
             app:layout_constraintLeft_toRightOf="@+id/img_family"
-            app:layout_constraintTop_toTopOf="@+id/img_family" />
+            app:layout_constraintTop_toTopOf="@+id/img_family"
+            android:layout_marginStart="16dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -14,16 +14,28 @@ class NewDiary : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.new_diary, container, false)
-//        newDiaryBinding = binding
+//        val view = inflater.inflate(R.layout.new_diary, container, false)
+        val binding = NewDiaryBinding.inflate(inflater, container, false)
+        newDiaryBinding = binding
 
-        return view
-//        return newDiaryBinding!!.root
+        binding.btnClose.setOnClickListener{
+            val transaction= fragmentManager?.beginTransaction()
+            transaction?.remove(this)?.commit()
+        }
+
+        binding.btnDatepicker.setOnClickListener{
+            val datePickerDialog = DatePickerDialog()
+            val transaction= fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.new_diary, datePickerDialog)?.commit()
+        }
+
+//        return view
+        return newDiaryBinding!!.root
     }
 
-//    override fun onDestroyView() {
-//        newDiaryBinding = null
-//        super.onDestroyView()
-//    }
+    override fun onDestroyView() {
+        newDiaryBinding = null
+        super.onDestroyView()
+    }
 
 }

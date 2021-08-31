@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
 import kevin.android.petcoms.R
 import kevin.android.petcoms.models.record.RecordModel
-import kotlinx.android.synthetic.main.record_recycler_layout.view.*
 
 class NewlyFeedAdapter(val lists: ArrayList<RecordModel>) : RecyclerView.Adapter<NewlyFeedAdapter.NewlyFeedViewHolder>() {
 

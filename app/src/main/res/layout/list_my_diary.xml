@@ -13,88 +13,89 @@
             type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20dp">
-
-    <ImageView
-        android:id="@+id/d_user_img"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@{myDiary.DUserImg}"/>
-
-    <TextView
-        android:id="@+id/d_user_nickname"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="@{myDiary.DUserNickname}"
-        app:layout_constraintLeft_toRightOf="@+id/d_user_img"
-        app:layout_constraintTop_toTopOf="@+id/d_user_img"
-        android:textSize="20sp"
-        android:layout_marginStart="10dp"/>
-
-    <TextView
-        android:id="@+id/d_date"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="@{myDiary.DDate}"
-        app:layout_constraintLeft_toRightOf="@+id/d_user_img"
-        app:layout_constraintTop_toBottomOf="@+id/d_user_nickname"
-        app:layout_constraintBottom_toBottomOf="@+id/d_user_img"
-        android:layout_marginStart="10dp"/>
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/d_contents"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/list_my_diary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@{myPageViewModel.postLiveData.body().body.toString()}"
-        app:layout_constraintTop_toBottomOf="@+id/d_user_img"
-        android:layout_marginTop="10dp"/>
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/d_review"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/d_contents"
-        app:layout_constraintRight_toLeftOf="@+id/d_pin"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:background="@drawable/ic_comment"/>
+        <ImageView
+            android:id="@+id/d_user_img"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        app:layout_constraintLeft_toRightOf="@+id/d_review"
-        app:layout_constraintTop_toTopOf="@+id/d_review"/>
+        <TextView
+            android:id="@+id/d_user_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:text="@{myPageViewModel.myDiaryList.body().title.toString()}"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toRightOf="@+id/d_user_img"
+            app:layout_constraintTop_toTopOf="@+id/d_user_img" />
 
-    <Button
-        android:id="@+id/d_pin"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        app:layout_constraintTop_toTopOf="@+id/d_review"
-        app:layout_constraintLeft_toRightOf="@+id/d_review"
-        app:layout_constraintBottom_toBottomOf="@+id/d_review"
-        android:layout_marginStart="10dp"
-        android:background="@drawable/ic_save"/>
+        <TextView
+            android:id="@+id/d_date"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:text="0000년 00월 00일"
+            app:layout_constraintBottom_toBottomOf="@+id/d_user_img"
+            app:layout_constraintLeft_toRightOf="@+id/d_user_img"
+            app:layout_constraintTop_toBottomOf="@+id/d_user_nickname" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
-        app:layout_constraintTop_toTopOf="@+id/d_pin"
-        app:layout_constraintLeft_toRightOf="@+id/d_pin"/>
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/d_contents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{myPageViewModel.myDiaryList.body().body.toString()}"
+            app:layout_constraintTop_toBottomOf="@+id/d_user_img" />
+
+        <Button
+            android:id="@+id/d_review"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_comment"
+            android:textAlignment="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/d_pin"
+            app:layout_constraintTop_toBottomOf="@+id/d_contents" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintLeft_toRightOf="@+id/d_review"
+            app:layout_constraintTop_toTopOf="@+id/d_review" />
+
+        <Button
+            android:id="@+id/d_pin"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/ic_save"
+            app:layout_constraintBottom_toBottomOf="@+id/d_review"
+            app:layout_constraintLeft_toRightOf="@+id/d_review"
+            app:layout_constraintTop_toTopOf="@+id/d_review" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            app:layout_constraintLeft_toRightOf="@+id/d_pin"
+            app:layout_constraintTop_toTopOf="@+id/d_pin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

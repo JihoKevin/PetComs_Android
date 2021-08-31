@@ -7,7 +7,7 @@
     
     <data>
         <variable
-            name="viewModel"
+            name="myPageViewModel"
             type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel" />
     </data>
 
@@ -15,8 +15,12 @@
     android:id="@+id/myPageFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.mypage.MyPageFragment"
-    android:padding="20dp">
+    tools:context=".fragments.mypage.MyPageFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
 
     <ImageView
         android:id="@+id/user_img"
@@ -51,7 +55,8 @@
         android:layout_height="24dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/ic_settings"/>
+        android:background="@drawable/ic_settings"
+        android:stateListAnimator="@null"/>
 
     <Button
         android:id="@+id/btn_notice"
@@ -60,7 +65,8 @@
         app:layout_constraintTop_toTopOf="@+id/btn_settings"
         app:layout_constraintRight_toLeftOf="@+id/btn_settings"
         android:background="@drawable/ic_notifications"
-        android:layout_marginEnd="10dp"/>
+        android:layout_marginEnd="10dp"
+        android:stateListAnimator="@null"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_pets"
@@ -70,7 +76,7 @@
         app:layout_constraintLeft_toRightOf="@+id/user_img"
         android:layout_marginStart="10dp"
         android:orientation="horizontal"
-        app:items="@{viewModel.myPetsList}"
+        app:items="@{myPageViewModel.myPetsList}"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <Button
@@ -81,9 +87,10 @@
         app:layout_constraintLeft_toRightOf="@+id/rv_pets"
         android:layout_marginStart="10dp"
         android:background="@drawable/ic_add"
-        android:onClick="@{() -> viewModel.btnClick()}"/>
+        android:onClick="@{() -> myPageViewModel.btnClick()}"
+        android:stateListAnimator="@null"/>
 
-    <TextView
+    <Button
         android:id="@+id/my_pins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,7 +101,7 @@
         android:layout_marginTop="10dp"
         android:textAlignment="center"/>
 
-    <TextView
+    <Button
         android:id="@+id/my_family"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,8 +119,8 @@
         app:layout_constraintTop_toBottomOf="@+id/my_pins"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="10dp"
-        app:items="@{viewModel.myDiaryList}"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        <!--app:items="@{myPageViewModel.myDiaryList}" 오류-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_diary"
@@ -122,7 +129,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_margin="16dp"
-        android:onClick="@{() -> viewModel.fabClick()}" />
+        android:stateListAnimator="@null"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

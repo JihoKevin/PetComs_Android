@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import kevin.android.petcoms.R
 import kevin.android.petcoms.fragments.mypage.MyDiary
 import kevin.android.petcoms.fragments.mypage.MyPets
+import kevin.android.petcoms.fragments.mypage.NewDiary
+import kevin.android.petcoms.fragments.mypage.adapter.MyDiaryAdapter
 import kevin.android.petcoms.fragments.mypage.repository.MyPageRepository
 import kevin.android.petcoms.fragments.record.repository.RecordRepository
 import kevin.android.petcoms.models.PostModel
@@ -14,6 +16,8 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 
 class MyPageViewModel(private val myPageRepository: MyPageRepository): ViewModel() {
+
+//    lateinit var myDiaryAdapter: MyDiaryAdapter
 
     private val _myPetsList = MutableLiveData<ArrayList<MyPets>>()
     val myPetsList : LiveData<ArrayList<MyPets>>
@@ -24,8 +28,7 @@ class MyPageViewModel(private val myPageRepository: MyPageRepository): ViewModel
     init {
         petsList = arrayListOf(
             MyPets("콩순이"),
-            MyPets("팥순이"),
-            MyPets("또순이")
+            MyPets("팥순이")
         )
         _myPetsList.value = petsList
     }
@@ -37,36 +40,54 @@ class MyPageViewModel(private val myPageRepository: MyPageRepository): ViewModel
     }
 
 
-    private val _myDiaryList = MutableLiveData<ArrayList<MyDiary>>()
-    val myDiaryList : LiveData<ArrayList<MyDiary>>
-        get() = _myDiaryList
+//    private val _myDiaryList = MutableLiveData<ArrayList<MyDiary>>()
+//    val myDiaryList : LiveData<ArrayList<MyDiary>>
+//        get() = _myDiaryList
+//
+//    private var diaryList = ArrayList<MyDiary>()
+//
+//    init {
+//        diaryList = arrayListOf(
+//            MyDiary("","","","")
+//        )
+//        _myDiaryList.value = diaryList
+//    }
 
-    private var diaryList = ArrayList<MyDiary>()
+//    fun fabClick(){
+//        val myDiary = MyDiary(DUserImg = R.drawable.ic_settings, "탄이아빠", "2020.04.05")
+//        diaryList.add(myDiary)
+//        _myDiaryList.value = diaryList
+//    }
 
-    init {
-        diaryList = arrayListOf(
-            MyDiary(DUserImg = R.drawable.ic_settings, DUserNickname = "탄이아빠", DDate = "2020.04.05"),
-            MyDiary(DUserImg = R.drawable.ic_settings, DUserNickname = "탄이아빠", DDate = "2020.04.05"),
-            MyDiary(DUserImg = R.drawable.ic_settings, DUserNickname = "탄이아빠", DDate = "2020.04.05")
-        )
-        _myDiaryList.value = diaryList
-    }
 
-    fun fabClick(){
-        val myDiary = MyDiary(DUserImg = R.drawable.ic_settings, "탄이아빠", "2020.04.05")
-        diaryList.add(myDiary)
-        _myDiaryList.value = diaryList
-    }
+//    private var _myDiaryList = MutableLiveData<Response<MyDiary>>()
+//    val myDiaryList: MutableLiveData<Response<MyDiary>>
+//        get() = _myDiaryList
+//
+//    init {
+//        getMyDiaryModel()
+//    }
 
-    private var _postLiveData = MutableLiveData<Response<PostModel>>()
-    val postLiveData: MutableLiveData<Response<PostModel>>
-        get() = _postLiveData
+    val myDiaryList: MutableLiveData<Response<MyDiary>> = MutableLiveData()
 
-    fun getPostViewModel() {
+    fun getMyDiaryModel() {
         viewModelScope.launch {
-            val response = myPageRepository.getPost2()
-            postLiveData.value = response
+            val response = myPageRepository.getMyDiaryData()
+            myDiaryList.value = response
         }
     }
+
+//    fun getAdapter(): MyDiaryAdapter{
+//        return myDiaryAdapter
+//    }
+
+//    val myResponse : MutableLiveData<Response<MyDiary>> = MutableLiveData()
+//
+//    fun getMyDiary() {
+//        viewModelScope.launch {
+//            val response = myPageRepository.getMyDiaryData()
+//            myResponse.value = response
+//        }
+//    }
 
 }

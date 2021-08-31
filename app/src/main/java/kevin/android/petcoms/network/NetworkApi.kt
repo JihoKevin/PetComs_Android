@@ -1,5 +1,7 @@
 package kevin.android.petcoms.network
 
+import kevin.android.petcoms.fragments.mypage.MyDiary
+import kevin.android.petcoms.fragments.mypage.MyPets
 import kevin.android.petcoms.models.PostModel
 import retrofit2.Response
 import retrofit2.http.GET
@@ -15,8 +17,8 @@ interface NetworkApi {
     }
 
     @GET("2")
-    suspend fun getPost2(): Response<PostModel> {
-        return Client.retrofitService.getPost2()
+    suspend fun getMyDiaryData(): Response<MyDiary> {
+        return Client.retrofitService.getMyDiaryData()
     }
 
 }

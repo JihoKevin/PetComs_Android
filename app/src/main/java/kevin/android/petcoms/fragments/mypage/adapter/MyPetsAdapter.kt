@@ -1,13 +1,12 @@
 package kevin.android.petcoms.fragments.mypage.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import kevin.android.petcoms.R
 import kevin.android.petcoms.databinding.ListMyPetsBinding
-import kevin.android.petcoms.fragments.mypage.MyPets
+import kevin.android.petcoms.fragments.mypage.model.MyPets
 
 class MyPetsAdapter(): RecyclerView.Adapter<MyPetsAdapter.MyPetsViewHolder>() {
 

@@ -18,6 +18,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kevin.android.petcoms.MainActivity
 import kevin.android.petcoms.R
@@ -25,6 +27,7 @@ import kevin.android.petcoms.databinding.FragmentDiaryBinding
 import kevin.android.petcoms.databinding.FragmentMypageBinding
 import kevin.android.petcoms.databinding.NewDiaryBinding
 import kevin.android.petcoms.fragments.mypage.adapter.MyDiaryAdapter
+import kevin.android.petcoms.fragments.mypage.adapter.MyFamAdapter
 import kevin.android.petcoms.fragments.mypage.adapter.MyPetsAdapter
 import kevin.android.petcoms.fragments.mypage.repository.MyPageRepository
 import kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel
@@ -33,6 +36,7 @@ import java.util.*
 
 class MyPageFragment : Fragment() {
 
+//    private var fragmentDiaryBinding: FragmentMypageBinding? = null
     private var binding: FragmentMypageBinding? = null
     private lateinit var myPageViewModel: MyPageViewModel
     private lateinit var myPetsAdapter: MyPetsAdapter
@@ -42,6 +46,8 @@ class MyPageFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mypage, container, false) // databinding
         binding!!.lifecycleOwner = this
+//        val binding = FragmentMypageBinding.inflate(inflater, container, false)
+//        fragmentDiaryBinding = binding
 
         val repository = MyPageRepository()
         val myPageViewModelFactory = MyPageViewModelFactory(repository)
@@ -52,7 +58,7 @@ class MyPageFragment : Fragment() {
         myPageViewModel = ViewModelProvider(this, myPageViewModelFactory).get(MyPageViewModel::class.java)
         binding!!.myPageViewModel = myPageViewModel
 
-        myPageViewModel.getMyDiaryModel()
+//        myPageViewModel.getMyDiaryModel()
 
 //        val bottomSheet = BottomSheetDialogFragment()
 
@@ -60,6 +66,17 @@ class MyPageFragment : Fragment() {
             val newDiary = NewDiary()
             val transaction= fragmentManager?.beginTransaction()
             transaction?.replace(R.id.myPageFragment, newDiary)?.commit()
+        }
+
+        binding!!.btnPetAdd.setOnClickListener{
+            val addPetInfo = AddPetInfo()
+            val transaction= fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.myPageFragment, addPetInfo)?.commit()
+        }
+
+        binding!!.myFamily.setOnClickListener {
+            val bottomSheet = MyFamBottomSheet()
+            bottomSheet.show(parentFragmentManager, bottomSheet.tag)
         }
 
         //날짜 다이얼로그그
@@ -116,6 +133,7 @@ class MyPageFragment : Fragment() {
     }
 
     override fun onDestroyView() {
+//        fragmentDiaryBinding = null
         binding = null
         super.onDestroyView()
     }

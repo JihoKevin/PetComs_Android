@@ -74,7 +74,6 @@
         android:id="@+id/btn_datepicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2021.08.25"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
     <Button

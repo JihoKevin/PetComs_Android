@@ -7,7 +7,7 @@
     <data>
         <variable
             name="myDiary"
-            type="kevin.android.petcoms.fragments.mypage.MyDiary" />
+            type="kevin.android.petcoms.fragments.mypage.model.MyDiary" />
         <variable
             name="myPageViewModel"
             type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel" />
@@ -19,11 +19,11 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/d_user_img"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/ic_settings"
+            android:src="@{myDiary.DUserImg}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:text="@{myPageViewModel.myDiaryList.body().title.toString()}"
+            android:text="@{myDiary.DUserNickname}"
             android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@+id/d_user_img"
             app:layout_constraintTop_toTopOf="@+id/d_user_img" />
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:text="0000년 00월 00일"
+            android:text="@{myPageViewModel.currentDate.toString()}"
             app:layout_constraintBottom_toBottomOf="@+id/d_user_img"
             app:layout_constraintLeft_toRightOf="@+id/d_user_img"
             app:layout_constraintTop_toBottomOf="@+id/d_user_nickname" />
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@{myPageViewModel.myDiaryList.body().body.toString()}"
+            android:text="@{myDiary.DContents}"
             app:layout_constraintTop_toBottomOf="@+id/d_user_img" />
 
         <Button

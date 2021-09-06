@@ -34,7 +34,7 @@
         android:id="@+id/user_nickname"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:text="도경수"
+        android:text="탄이아빠"
         app:layout_constraintLeft_toRightOf="@+id/user_img"
         app:layout_constraintTop_toTopOf="@+id/user_img"
         android:textSize="20dp"
@@ -44,7 +44,7 @@
         android:id="@+id/user_email"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:text="dio123@gmail.com"
+        android:text="@{myPageViewModel.currentDate.toString()}"
         app:layout_constraintLeft_toRightOf="@+id/user_img"
         app:layout_constraintTop_toBottomOf="@+id/user_nickname"
         android:layout_marginStart="10dp"/>
@@ -87,8 +87,8 @@
         app:layout_constraintLeft_toRightOf="@+id/rv_pets"
         android:layout_marginStart="10dp"
         android:background="@drawable/ic_add"
-        android:onClick="@{() -> myPageViewModel.btnClick()}"
         android:stateListAnimator="@null"/>
+<!--        android:onClick="@{() -> myPageViewModel.btnClick()}"-->
 
     <Button
         android:id="@+id/my_pins"
@@ -119,6 +119,7 @@
         app:layout_constraintTop_toBottomOf="@+id/my_pins"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="10dp"
+        app:items="@{myPageViewModel.myDiaryList}"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
         <!--app:items="@{myPageViewModel.myDiaryList}" 오류-->
 

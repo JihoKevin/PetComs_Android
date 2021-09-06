@@ -1,10 +1,8 @@
 package kevin.android.petcoms.fragments.mypage.adapter
 
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import kevin.android.petcoms.fragments.mypage.MyDiary
-import retrofit2.Response
+import kevin.android.petcoms.fragments.mypage.model.MyDiary
 
 object MyDiaryBindingAdapter {
 

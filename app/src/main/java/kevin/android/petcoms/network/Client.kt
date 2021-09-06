@@ -10,6 +10,7 @@ object Client { // 백엔드 웹 서버와  retrofit을 사용 할 예정
 
     private const val BASE_URL = "http://jsonplaceholder.typicode.com/posts/" // retrofit 통신을 확인하기 위한 Fake Api 사용. 임시 API
     //private const val BASE_URL = "http://10.0.2.2:8080/" -> localhost로 통신 할 때는 이걸로 사용하세요~
+//    private const val BASE_URL = "http://106.243.149.214:8080/api/persons/"
 
     val retrofitService: NetworkApi
 

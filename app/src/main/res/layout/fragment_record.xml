@@ -6,18 +6,25 @@
     <data>
 
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/recordFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".fragments.record.RecordFragment"
     >
+        <androidx.appcompat.widget.Toolbar
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/recordToolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ></androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/recordTabLayout"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recordToolBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
             <com.google.android.material.tabs.TabItem

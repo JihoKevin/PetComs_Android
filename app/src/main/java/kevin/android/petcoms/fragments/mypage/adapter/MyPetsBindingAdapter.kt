@@ -18,5 +18,4 @@ object MyPetsBindingAdapter {
         myAdapter.myPetsList = items
         myAdapter.notifyDataSetChanged()
     }
-
 }

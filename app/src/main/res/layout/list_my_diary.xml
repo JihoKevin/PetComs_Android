@@ -90,6 +90,7 @@
             app:layout_constraintTop_toTopOf="@+id/d_review" />
 
         <TextView
+            android:id="@+id/d_pin_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"

@@ -15,7 +15,7 @@ object MyPetsBindingAdapter {
 
         val myAdapter = recyclerView.adapter as MyPetsAdapter
 
-        myAdapter.myPetsList = items
+        myAdapter.data = items
         myAdapter.notifyDataSetChanged()
     }
 

@@ -6,40 +6,54 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kevin.android.petcoms.R
+import kevin.android.petcoms.databinding.AddPetInfoBinding
 import kevin.android.petcoms.fragments.mypage.adapter.MyFamAdapter
 import kevin.android.petcoms.fragments.mypage.model.MyDiary
 import kevin.android.petcoms.fragments.mypage.model.MyFamily
 import kevin.android.petcoms.fragments.mypage.model.MyPets
+import kevin.android.petcoms.fragments.mypage.model.TestModel
 import kevin.android.petcoms.fragments.mypage.repository.MyPageRepository
+import kevin.android.petcoms.models.PostModel
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDate
 
 class MyPageViewModel(private val myPageRepository: MyPageRepository): ViewModel() {
 
 //    lateinit var myDiaryAdapter: MyDiaryAdapter
+private var addPetInfoBinding : AddPetInfoBinding? = null
 
 //    반려견 리스트 뷰모델
-    private val _myPetsList = MutableLiveData<ArrayList<MyPets>>()
-    val myPetsList : LiveData<ArrayList<MyPets>>
+    private val _myPetsList = MutableLiveData<Response<MyPets>>()
+    val myPetsList : MutableLiveData<Response<MyPets>>
         get() = _myPetsList
 
-    private var petsList = ArrayList<MyPets>()
-
-    init {
-        petsList = arrayListOf(
-            MyPets("콩순이"),
-            MyPets("팥순이"),
-            MyPets("또순이")
-        )
-        _myPetsList.value = petsList
+    fun getMyPetsVM() {
+        viewModelScope.launch {
+            val response = myPageRepository.getMyPets()
+            myPetsList.value = response
+        }
     }
 
+//    private var petsList = ArrayList<MyPets>()
+
+//    init {
+//        petsList = arrayListOf(
+//            MyPets("콩순이"),
+//            MyPets("팥순이"),
+//            MyPets("또순이")
+//        )
+//        _myPetsList.value = petsList
+//    }
+
 //    fun btnClick(){
-//        val myPets = MyPets("탄이")
+//        val myPets = MyPets(addPetInfoBinding?.editPetName?.text.toString())
 //        petsList.add(myPets)
 //        _myPetsList.value = petsList
 //    }
+
 
 //    내 가족 리스트 뷰모델
     private val _myFamList = MutableLiveData<ArrayList<MyFamily>>()
@@ -78,7 +92,7 @@ class MyPageViewModel(private val myPageRepository: MyPageRepository): ViewModel
     }
 
 //    fun fabClick(){
-//        val myDiary = MyDiary(DUserImg = R.drawable.ic_settings, "탄이아빠", "2020.04.05")
+//        val myDiary = MyDiary(DUserImg = R.drawable.ic_settings, "탄이아빠", "2020.04.05", newDiary)
 //        diaryList.add(myDiary)
 //        _myDiaryList.value = diaryList
 //    }
@@ -117,6 +131,40 @@ class MyPageViewModel(private val myPageRepository: MyPageRepository): ViewModel
 //            myResponse.value = response
 //        }
 //    }
+
+//    private var _postLiveData2 = MutableLiveData<Response<PostModel>>()
+//    val postLiveData2: MutableLiveData<Response<PostModel>>
+//        get() = _postLiveData2!!
+//
+//    fun getPostViewModel2() {
+//        viewModelScope.launch {
+//            val response = myPageRepository.getPost2()
+//            postLiveData2.value = response
+//        }
+//    }
+
+    private var _testData = MutableLiveData<Response<TestModel>>()
+    val testData: MutableLiveData<Response<TestModel>>
+        get() = _testData!!
+
+    fun getPostTestVM() {
+        viewModelScope.launch {
+            val response = myPageRepository.getPostTest()
+            testData.value = response
+        }
+    }
+
+//    Client.retrofitService.getPost3().enqueue(object : Callback<PostModel> {
+//        override fun onResponse(call: Call<PostModel>, response: Response<PostModel>) {
+//            //성공
+//            if(response.isSuccessful) {
+//                var postModel: PostModel = response.body()!!
+//            }
+//        }
+//        override fun onFailure(call: Call<PostModel>, t: Throwable) {
+//            //실패
+//        }
+//    })
 
     val currentDate: LocalDate = LocalDate.now()
 

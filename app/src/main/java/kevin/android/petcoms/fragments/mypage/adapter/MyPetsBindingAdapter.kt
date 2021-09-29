@@ -2,7 +2,7 @@ package kevin.android.petcoms.fragments.mypage.adapter
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kevin.android.petcoms.fragments.mypage.MyPets
+import kevin.android.petcoms.fragments.mypage.model.MyPets
 
 object MyPetsBindingAdapter {
 
@@ -15,7 +15,7 @@ object MyPetsBindingAdapter {
 
         val myAdapter = recyclerView.adapter as MyPetsAdapter
 
-        myAdapter.myPetsList = items
+        myAdapter.data = items
         myAdapter.notifyDataSetChanged()
     }
 }

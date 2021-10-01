@@ -20,12 +20,21 @@ class MyPageRepository {
 //        return Client.retrofitService.getPost2()
 //    }
 
-    suspend fun getPostTest(): Response<TestModel>{
+    suspend fun getPostTest(): Response<TestModel> {
         return Client.retrofitService.getPostTest()
     }
 
-    suspend fun getMyPets(): Response<MyPets>{
-        return Client.retrofitService.getMyPets()
+    suspend fun getMyPets(): List<MyPets> {
+
+        val lists =
+            listOf<MyPets>(
+                MyPets(1, 11, "탄이", "탄이예요"),
+                MyPets(2, 12, "똘이", "똘이예요"),
+                MyPets(3, 13, "깨비", "깨비예요")
+            )
+
+        return lists
+        //return Client.retrofitService.getMyPets()
     }
 
 }

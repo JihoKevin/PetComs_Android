@@ -29,8 +29,6 @@ interface NetworkApi {
     }
 
     @GET("1")
-    suspend fun getMyPets(): Response<MyPets> {
-        return Client.retrofitService.getMyPets()
-    }
+    suspend fun getMyPets(): List<MyPets>
 
 }

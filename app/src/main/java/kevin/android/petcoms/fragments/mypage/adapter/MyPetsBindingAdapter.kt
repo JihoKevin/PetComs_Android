@@ -6,16 +6,16 @@ import kevin.android.petcoms.fragments.mypage.model.MyPets
 
 object MyPetsBindingAdapter {
 
-    @BindingAdapter("items")
-    @JvmStatic
-    fun setItems(recyclerView: RecyclerView, items : ArrayList<MyPets>){
-
-        if(recyclerView.adapter == null)
-            recyclerView.adapter = MyPetsAdapter()
-
-        val myAdapter = recyclerView.adapter as MyPetsAdapter
-
-        myAdapter.data = items
-        myAdapter.notifyDataSetChanged()
-    }
+//    @BindingAdapter("items")
+//    @JvmStatic
+//    fun setItems(recyclerView: RecyclerView, items : ArrayList<MyPets>){
+//
+//        if(recyclerView.adapter == null)
+//            recyclerView.adapter = MyPetsAdapter()
+//
+//        val myAdapter = recyclerView.adapter as MyPetsAdapter
+//
+//        myAdapter.data = items
+//        myAdapter.notifyDataSetChanged()
+//    }
 }

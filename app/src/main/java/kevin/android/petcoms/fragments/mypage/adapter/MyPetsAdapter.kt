@@ -9,9 +9,8 @@ import kevin.android.petcoms.fragments.mypage.model.MyPets
 import kevin.android.petcoms.fragments.mypage.model.TestModel
 import kevin.android.petcoms.models.PostModel
 
-class MyPetsAdapter(): RecyclerView.Adapter<MyPetsAdapter.MyPetsViewHolder>() {
+class MyPetsAdapter(private var data: List<MyPets>): RecyclerView.Adapter<MyPetsAdapter.MyPetsViewHolder>() {
 
-    var data = mutableListOf<MyPets>()
 
     class MyPetsViewHolder(val binding: ListMyPetsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: MyPets) {

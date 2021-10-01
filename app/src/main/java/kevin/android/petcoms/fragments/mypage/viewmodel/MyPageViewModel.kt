@@ -26,14 +26,14 @@ class MyPageViewModel(private val myPageRepository: MyPageRepository): ViewModel
 private var addPetInfoBinding : AddPetInfoBinding? = null
 
 //    반려견 리스트 뷰모델
-    private val _myPetsList = MutableLiveData<Response<MyPets>>()
-    val myPetsList : MutableLiveData<Response<MyPets>>
+    private val _myPetsList = MutableLiveData<List<MyPets>>()
+    val myPetsList : MutableLiveData<List<MyPets>>
         get() = _myPetsList
 
     fun getMyPetsVM() {
         viewModelScope.launch {
             val response = myPageRepository.getMyPets()
-            myPetsList.value = response
+            _myPetsList.postValue(response)
         }
     }
 

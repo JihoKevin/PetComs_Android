@@ -32,15 +32,16 @@ class MyPageFragment : Fragment() {
         val repository = MyPageRepository()
         val myPageViewModelFactory = MyPageViewModelFactory(repository)
 
-//        myPetsAdapter = MyPetsAdapter()
         myDiaryAdapter = MyDiaryAdapter()
 
         myPageViewModel = ViewModelProvider(this, myPageViewModelFactory).get(MyPageViewModel::class.java)
         binding!!.myPageViewModel = myPageViewModel
 
-//        myPageViewModel.myPetsList.observe(this, Observer {
-//            binding?.rvPets?.adapter = myPetsAdapter
-//        })
+        myPageViewModel.myPetsList.observe(viewLifecycleOwner, Observer {
+            myPetsAdapter = MyPetsAdapter(it)
+            binding?.rvPets?.adapter = myPetsAdapter
+            myPetsAdapter.notifyDataSetChanged()
+        })
 
         myPageViewModel.getPostTestVM()
         myPageViewModel.getMyPetsVM()

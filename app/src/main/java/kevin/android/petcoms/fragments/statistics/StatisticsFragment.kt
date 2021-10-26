@@ -2,36 +2,31 @@ package kevin.android.petcoms.fragments.statistics
 
 import android.graphics.Color
 import android.os.Bundle
-import android.os.DropBoxManager
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
-import kevin.android.petcoms.R
+import dagger.hilt.android.AndroidEntryPoint
 import kevin.android.petcoms.databinding.FragmentStatisticsBinding
-import kevin.android.petcoms.fragments.statistics.viewmodel.StatisticsViewModel
 
+@AndroidEntryPoint
 class StatisticsFragment : Fragment() {
 
     private lateinit var pieChart: PieChart
-//    lateinit var statisticsViewModel: StatisticsViewModel
+    // statisticsViewModel에서 @HiltViewModel 관련 작업 처리 필요
+    //private val statisticsViewModel: StatisticsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//         Inflate the layout for this fragment
-//        val view = inflater.inflate(R.layout.fragment_statistics, container, false)
 
         val binding = FragmentStatisticsBinding.inflate(inflater, container, false)
 
@@ -42,13 +37,6 @@ class StatisticsFragment : Fragment() {
 
         setDataToPieChart()
 
-//        statisticsViewModel = ViewModelProvider(this).get(StatisticsViewModel::class.java)
-//        statisticsViewModel.currentValue.observe(this, Observer {
-//            it
-//        })
-
-
-//        return view
         return binding.root
     }
 

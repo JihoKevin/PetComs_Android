@@ -4,16 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kevin.android.petcoms.fragments.record.repository.RecordRepository
 import kevin.android.petcoms.models.PostModel
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
 enum class ActionType {
     CLICK
 }
-
-class RecordViewModel(private val recordRepository: RecordRepository) : ViewModel() {
+@HiltViewModel
+class RecordViewModel @Inject constructor (private val recordRepository: RecordRepository) : ViewModel() {
 
     private var _postLiveData = MutableLiveData<Response<PostModel>>()
     val postLiveData: MutableLiveData<Response<PostModel>>

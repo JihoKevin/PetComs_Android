@@ -1,7 +1,5 @@
 package kevin.android.petcoms.fragments.mypage
 
-import android.content.Context
-import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -9,15 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.EditText
-import android.widget.NumberPicker
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import kevin.android.petcoms.R
+import dagger.hilt.android.AndroidEntryPoint
 import kevin.android.petcoms.databinding.DialogDatepickerBinding
-import kevin.android.petcoms.databinding.NewDiaryBinding
-import java.time.LocalDate
 
+@AndroidEntryPoint
 class DatePickerDialog: DialogFragment() {
 
     private var dialogDatePickerBinding: DialogDatepickerBinding? = null

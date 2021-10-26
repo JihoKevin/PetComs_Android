@@ -1,17 +1,10 @@
 package kevin.android.petcoms.fragments.mypage.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kevin.android.petcoms.R
-import kevin.android.petcoms.databinding.BottomsheetMyfamBinding
 import kevin.android.petcoms.databinding.ListMyFamilyBinding
-import kevin.android.petcoms.databinding.ListMyPetsBinding
 import kevin.android.petcoms.fragments.mypage.model.MyFamily
-import kevin.android.petcoms.fragments.mypage.model.MyPets
 
 class MyFamAdapter(): RecyclerView.Adapter<MyFamAdapter.MyFamViewHolder>() {
 

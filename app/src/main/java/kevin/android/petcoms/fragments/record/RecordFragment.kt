@@ -1,40 +1,26 @@
 package kevin.android.petcoms.fragments.record
 
 import android.os.Bundle
-import android.text.InputType
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.utils.ColorTemplate
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import kevin.android.petcoms.R
-import kevin.android.petcoms.databinding.ActivityMainBinding
-import kevin.android.petcoms.databinding.FragmentDiaryBinding
 import kevin.android.petcoms.databinding.FragmentRecordBinding
 import kevin.android.petcoms.fragments.record.adapter.RecordViewPagerAdapter
-import kevin.android.petcoms.fragments.record.repository.RecordRepository
-import kevin.android.petcoms.fragments.record.viewmodel.ActionType
 import kevin.android.petcoms.fragments.record.viewmodel.RecordViewModel
-import kevin.android.petcoms.fragments.record.viewmodel.RecordViewModelFactory
-import kevin.android.petcoms.network.Client
 
+@AndroidEntryPoint
 class RecordFragment : Fragment() {
 
     private var mBinding: FragmentRecordBinding? = null // 뷰 바인딩 활용 (findViewById 사용 할 필요 없음) 접근 방법 : binding.id . . .
     private val binding get() = mBinding!! // 매번 null check 할 필요 없이 바인딩 변수 재 선언
 
-    private lateinit var recordViewModel: RecordViewModel
+    private val recordViewModel: RecordViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,10 +29,10 @@ class RecordFragment : Fragment() {
         // Inflate the layout for this fragment
         mBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_record, container, false)
         binding.lifecycleOwner = this
-        var repository = RecordRepository()
-        val viewModelFactory = RecordViewModelFactory(repository)
+        //var repository = RecordRepository()
+        //val viewModelFactory = RecordViewModelFactory(repository)
 
-        recordViewModel = ViewModelProvider(this, viewModelFactory).get(RecordViewModel::class.java)
+//        recordViewModel = ViewModelProvider(this, viewModelFactory).get(RecordViewModel::class.java)
 
         attachViewPager()
 

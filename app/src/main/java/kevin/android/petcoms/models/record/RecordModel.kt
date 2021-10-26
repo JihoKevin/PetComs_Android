@@ -1,7 +1,5 @@
 package kevin.android.petcoms.models.record
 
-import de.hdodenhof.circleimageview.CircleImageView
-
 data class RecordModel(
     val date: String,
     val time: String,

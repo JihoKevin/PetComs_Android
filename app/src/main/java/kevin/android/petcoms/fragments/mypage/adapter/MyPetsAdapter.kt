@@ -4,10 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kevin.android.petcoms.databinding.ListMyPetsBinding
-import kevin.android.petcoms.fragments.mypage.model.MyDiary
 import kevin.android.petcoms.fragments.mypage.model.MyPets
-import kevin.android.petcoms.fragments.mypage.model.TestModel
-import kevin.android.petcoms.models.PostModel
 
 class MyPetsAdapter(private var data: List<MyPets>): RecyclerView.Adapter<MyPetsAdapter.MyPetsViewHolder>() {
 

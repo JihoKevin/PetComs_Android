@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/fragment_mypage.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_record.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/layout/list_my_diary.xml" value="0.14895833333333333" />
+        <entry key="app/src/main/res/layout/list_my_pets.xml" value="0.25052083333333336" />
+      </map>
+    </option>
+  </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>

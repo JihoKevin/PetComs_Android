@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import kevin.android.petcoms.R
-import kevin.android.petcoms.databinding.DialogDatepickerBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kevin.android.petcoms.databinding.NewDiaryBinding
-import kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel
 import java.time.LocalDate
 
+@AndroidEntryPoint
 class NewDiary : Fragment() {
 
     private var newDiaryBinding : NewDiaryBinding? = null

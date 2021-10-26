@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kevin.android.petcoms.databinding.ListMyDiaryBinding
 import kevin.android.petcoms.fragments.mypage.model.MyDiary
 
-//private val myDiaryList: MutableList<MyDiary>
 class MyDiaryAdapter() : RecyclerView.Adapter<MyDiaryAdapter.MyDiaryViewHolder>() {
 
     var myDiaryList = mutableListOf<MyDiary>()

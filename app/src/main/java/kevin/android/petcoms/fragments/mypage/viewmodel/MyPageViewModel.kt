@@ -1,28 +1,27 @@
 package kevin.android.petcoms.fragments.mypage.viewmodel
 
-import android.graphics.Insets.add
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kevin.android.petcoms.R
 import kevin.android.petcoms.databinding.AddPetInfoBinding
-import kevin.android.petcoms.fragments.mypage.adapter.MyFamAdapter
 import kevin.android.petcoms.fragments.mypage.model.MyDiary
 import kevin.android.petcoms.fragments.mypage.model.MyFamily
 import kevin.android.petcoms.fragments.mypage.model.MyPets
 import kevin.android.petcoms.fragments.mypage.model.TestModel
 import kevin.android.petcoms.fragments.mypage.repository.MyPageRepository
-import kevin.android.petcoms.models.PostModel
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDate
+import javax.inject.Inject
 
-class MyPageViewModel(private val myPageRepository: MyPageRepository): ViewModel() {
+@HiltViewModel
+class MyPageViewModel @Inject constructor (private val myPageRepository: MyPageRepository): ViewModel() {
 
-//    lateinit var myDiaryAdapter: MyDiaryAdapter
 private var addPetInfoBinding : AddPetInfoBinding? = null
 
 //    반려견 리스트 뷰모델
@@ -166,6 +165,7 @@ private var addPetInfoBinding : AddPetInfoBinding? = null
 //        }
 //    })
 
+    @RequiresApi(Build.VERSION_CODES.O)
     val currentDate: LocalDate = LocalDate.now()
 
 }

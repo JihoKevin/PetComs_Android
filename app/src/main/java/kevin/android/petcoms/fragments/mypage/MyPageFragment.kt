@@ -19,7 +19,7 @@ import kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel
 class MyPageFragment : Fragment() {
 
     private var binding: FragmentMypageBinding? = null
-    private val myPageViewModel: MyPageViewModel by activityViewModels()
+    private val viewModel: MyPageViewModel by activityViewModels()
     private lateinit var myPetsAdapter: MyPetsAdapter
     private lateinit var myDiaryAdapter: MyDiaryAdapter
 
@@ -27,20 +27,22 @@ class MyPageFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_mypage, container, false)
         binding!!.lifecycleOwner = this
+        binding!!.myPageViewModel = viewModel
 
         myDiaryAdapter = MyDiaryAdapter()
 
-        binding!!.myPageViewModel = myPageViewModel
+        setRV()
+        btnClick()
 
-        myPageViewModel.myPetsList.observe(viewLifecycleOwner, Observer {
-            myPetsAdapter = MyPetsAdapter(it)
-            binding?.rvPets?.adapter = myPetsAdapter
-            myPetsAdapter.notifyDataSetChanged()
-        })
+        return binding!!.root
+    }
 
-        myPageViewModel.getPostTestVM()
-        myPageViewModel.getMyPetsVM()
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
+    }
 
+    private fun btnClick() {
         binding!!.fabDiary.setOnClickListener{
             val newDiary = NewDiary()
             val transaction= fragmentManager?.beginTransaction()
@@ -57,13 +59,14 @@ class MyPageFragment : Fragment() {
             val bottomSheet = MyFamBottomSheet()
             bottomSheet.show(parentFragmentManager, bottomSheet.tag)
         }
-
-        return binding!!.root
     }
 
-    override fun onDestroyView() {
-        binding = null
-        super.onDestroyView()
+    private fun setRV() {
+        viewModel.myPetsList.observe(this, Observer {
+            myPetsAdapter = MyPetsAdapter(it)
+            binding?.rvPets?.adapter = myPetsAdapter
+            myPetsAdapter.notifyDataSetChanged()
+        })
     }
 
 }

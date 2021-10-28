@@ -1,6 +1,7 @@
 package kevin.android.petcoms.fragments.mypage.viewmodel
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,39 +21,24 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
-class MyPageViewModel @Inject constructor (private val myPageRepository: MyPageRepository): ViewModel() {
-
-private var addPetInfoBinding : AddPetInfoBinding? = null
+class MyPageViewModel @Inject constructor (private val repository: MyPageRepository): ViewModel() {
 
 //    반려견 리스트 뷰모델
-    private val _myPetsList = MutableLiveData<List<MyPets>>()
-    val myPetsList : MutableLiveData<List<MyPets>>
+    private val _myPetsList = MutableLiveData<List<TestModel>>()
+    val myPetsList : LiveData<List<TestModel>>
         get() = _myPetsList
 
-    fun getMyPetsVM() {
-        viewModelScope.launch {
-            val response = myPageRepository.getMyPets()
-            _myPetsList.postValue(response)
-        }
+    init {
+        getMyPetsVM()
     }
 
-//    private var petsList = ArrayList<MyPets>()
-
-//    init {
-//        petsList = arrayListOf(
-//            MyPets("콩순이"),
-//            MyPets("팥순이"),
-//            MyPets("또순이")
-//        )
-//        _myPetsList.value = petsList
-//    }
-
-//    fun btnClick(){
-//        val myPets = MyPets(addPetInfoBinding?.editPetName?.text.toString())
-//        petsList.add(myPets)
-//        _myPetsList.value = petsList
-//    }
-
+    fun getMyPetsVM() = viewModelScope.launch {
+        repository.getTestModel().let { response ->
+            if (response.isSuccessful){
+                _myPetsList.postValue(response.body())
+            } else{ }
+        }
+    }
 
 //    내 가족 리스트 뷰모델
     private val _myFamList = MutableLiveData<ArrayList<MyFamily>>()
@@ -69,11 +55,11 @@ private var addPetInfoBinding : AddPetInfoBinding? = null
         _myFamList.value = famList
     }
 
-    fun btnAddFam(){
-        val myFamily = MyFamily(R.drawable.ic_settings, "탄이엄마")
-        famList.add(myFamily)
-        _myFamList.value = famList
-    }
+//    fun btnAddFam(){
+//        val myFamily = MyFamily(R.drawable.ic_settings, "탄이엄마")
+//        famList.add(myFamily)
+//        _myFamList.value = famList
+//    }
 
     // 내 다이어리 뷰모델
     private val _myDiaryList = MutableLiveData<ArrayList<MyDiary>>()
@@ -89,81 +75,6 @@ private var addPetInfoBinding : AddPetInfoBinding? = null
         )
         _myDiaryList.value = diaryList
     }
-
-//    fun fabClick(){
-//        val myDiary = MyDiary(DUserImg = R.drawable.ic_settings, "탄이아빠", "2020.04.05", newDiary)
-//        diaryList.add(myDiary)
-//        _myDiaryList.value = diaryList
-//    }
-
-
-//    private var _myDiaryList = MutableLiveData<Response<MyDiary>>()
-//    val myDiaryList: MutableLiveData<Response<MyDiary>>
-//        get() = _myDiaryList
-//
-//    init {
-//        getMyDiaryModel()
-//    }
-
-
-
-//    val myDiaryList: MutableLiveData<Response<MyDiary>> = MutableLiveData()
-//
-//    fun getMyDiaryModel() {
-//        viewModelScope.launch {
-//            val response = myPageRepository.getMyDiaryData()
-//            myDiaryList.value = response
-//        }
-//    }
-
-
-
-//    fun getAdapter(): MyDiaryAdapter{
-//        return myDiaryAdapter
-//    }
-
-//    val myResponse : MutableLiveData<Response<MyDiary>> = MutableLiveData()
-//
-//    fun getMyDiary() {
-//        viewModelScope.launch {
-//            val response = myPageRepository.getMyDiaryData()
-//            myResponse.value = response
-//        }
-//    }
-
-//    private var _postLiveData2 = MutableLiveData<Response<PostModel>>()
-//    val postLiveData2: MutableLiveData<Response<PostModel>>
-//        get() = _postLiveData2!!
-//
-//    fun getPostViewModel2() {
-//        viewModelScope.launch {
-//            val response = myPageRepository.getPost2()
-//            postLiveData2.value = response
-//        }
-//    }
-
-    private var _testData = MutableLiveData<Response<TestModel>>()
-    val testData: MutableLiveData<Response<TestModel>>
-        get() = _testData!!
-
-    fun getPostTestVM() {
-        viewModelScope.launch {
-            val response = myPageRepository.getPostTest()
-            testData.value = response
-        }
-    }
-
-//    Client.retrofitService.getPost3().enqueue(object : Callback<PostModel> {
-//        override fun onResponse(call: Call<PostModel>, response: Response<PostModel>) {
-//            //성공
-//            if(response.isSuccessful) {
-//                var postModel: PostModel = response.body()!!
-//            }
-//        }
-//        override fun onFailure(call: Call<PostModel>, t: Throwable) {
-//            //실패
-//        }
-//    })
 
     @RequiresApi(Build.VERSION_CODES.O)
     val currentDate: LocalDate = LocalDate.now()

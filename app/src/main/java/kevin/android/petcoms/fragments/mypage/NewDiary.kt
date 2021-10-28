@@ -56,7 +56,6 @@ class NewDiary : Fragment() {
         val currentDate: LocalDate = LocalDate.now()
         binding.btnDatepicker.text = currentDate.toString()
 
-//        return view
         return newDiaryBinding!!.root
     }
 

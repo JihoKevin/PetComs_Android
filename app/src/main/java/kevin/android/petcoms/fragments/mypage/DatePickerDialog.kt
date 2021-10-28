@@ -21,17 +21,13 @@ class DatePickerDialog: DialogFragment() {
         val binding = DialogDatepickerBinding.inflate(inflater, container, false)
         dialogDatePickerBinding = binding
 
-        var yearList = (1950..2021).toList()
-        var monthList = (1..12).toList()
-        var dateList = (1..31).toList()
+        val yearList = (1950..2021).toList()
+        val monthList = (1..12).toList()
+        val dateList = (1..31).toList()
 
-        var yearStrConvertList = yearList.map { it.toString() }
-        var monthStrConvertList = monthList.map { it.toString() }
-        var dateStrConvertList = dateList.map { it.toString() }
-
-//        val currentDate: LocalDate = LocalDate.now()
-//        val year = currentDate.year
-//        binding.yearPicker.value = year
+        val yearStrConvertList = yearList.map { it.toString() }
+        val monthStrConvertList = monthList.map { it.toString() }
+        val dateStrConvertList = dateList.map { it.toString() }
 
         binding.yearPicker.run {
             minValue = 0
@@ -73,4 +69,5 @@ class DatePickerDialog: DialogFragment() {
         dialogDatePickerBinding = null
         super.onDestroyView()
     }
+
 }

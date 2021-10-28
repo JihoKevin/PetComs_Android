@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kevin.android.petcoms.databinding.ListMyPetsBinding
 import kevin.android.petcoms.fragments.mypage.model.MyPets
+import kevin.android.petcoms.fragments.mypage.model.TestModel
 
-class MyPetsAdapter(private var data: List<MyPets>): RecyclerView.Adapter<MyPetsAdapter.MyPetsViewHolder>() {
-
+class MyPetsAdapter(private var data: List<TestModel>): RecyclerView.Adapter<MyPetsAdapter.MyPetsViewHolder>() {
 
     class MyPetsViewHolder(val binding: ListMyPetsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: MyPets) {
-            binding.item = data
+        fun bind(data: TestModel) {
+            binding.model = data
         }
     }
 
@@ -24,17 +24,6 @@ class MyPetsAdapter(private var data: List<MyPets>): RecyclerView.Adapter<MyPets
         holder.bind(data[position])
     }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
-
-//    fun setItem(item: ArrayList<MyPets>){
-//        data = item
-//        notifyDataSetChanged()
-//    }
-//    fun setData(data : MutableList<MyPets>){
-//        myPetsList = data
-//        notifyDataSetChanged()
-//    }
+    override fun getItemCount() = data.size
 
 }

@@ -8,7 +8,10 @@
     <data>
         <variable
             name="myPageViewModel"
-            type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel" />
+            type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel"/>
+        <variable
+                name="testModel"
+                type="kevin.android.petcoms.fragments.mypage.model.TestModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +37,8 @@
                 android:id="@+id/user_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:text="@{myPageViewModel.testData.body().name.toString()}"
+                tools:text="username"
+                android:text="@{testModel.username.toString()}"
                 app:layout_constraintLeft_toRightOf="@+id/user_img"
                 app:layout_constraintTop_toTopOf="@+id/user_img"
                 android:textSize="20dp"
@@ -44,7 +48,8 @@
                 android:id="@+id/user_email"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:text="@{myPageViewModel.testData.body().email.toString()}"
+                android:text="@{testModel.email.toString()}"
+                tools:text="email@email.com"
                 app:layout_constraintLeft_toRightOf="@+id/user_img"
                 app:layout_constraintTop_toBottomOf="@+id/user_nickname"
                 android:layout_marginStart="10dp"/>

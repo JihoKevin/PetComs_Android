@@ -2,12 +2,13 @@
 
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="myDiary"
-            type="kevin.android.petcoms.fragments.mypage.model.MyDiary" />
+            name="testModel"
+            type="kevin.android.petcoms.fragments.mypage.model.TestModel" />
         <variable
             name="myPageViewModel"
             type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel" />
@@ -23,7 +24,7 @@
             android:id="@+id/d_user_img"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@{myDiary.DUserImg}"
+            android:src="@color/black"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +33,8 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:text="@{myDiary.DUserNickname}"
+            android:text="@{testModel.username}"
+            tools:text="username"
             android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@+id/d_user_img"
             app:layout_constraintTop_toTopOf="@+id/d_user_img" />
@@ -42,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
+            tools:text="dday"
             android:text="@{myPageViewModel.currentDate.toString()}"
             app:layout_constraintBottom_toBottomOf="@+id/d_user_img"
             app:layout_constraintLeft_toRightOf="@+id/d_user_img"
@@ -58,7 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@{myDiary.DContents}"
+            tools:text="contents"
+            android:text="@{testModel.phone}"
             app:layout_constraintTop_toBottomOf="@+id/d_user_img" />
 
         <Button
@@ -75,7 +79,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            tools:text="0"
             app:layout_constraintLeft_toRightOf="@+id/d_review"
             app:layout_constraintTop_toTopOf="@+id/d_review" />
 
@@ -93,7 +97,7 @@
             android:id="@+id/d_pin_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0"
+            tools:text="0"
             app:layout_constraintLeft_toRightOf="@+id/d_pin"
             app:layout_constraintTop_toTopOf="@+id/d_pin" />
 

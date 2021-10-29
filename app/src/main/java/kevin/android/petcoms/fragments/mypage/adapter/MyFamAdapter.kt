@@ -4,40 +4,25 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kevin.android.petcoms.databinding.ListMyFamilyBinding
-import kevin.android.petcoms.fragments.mypage.model.MyFamily
+import kevin.android.petcoms.fragments.mypage.model.TestModel
 
-class MyFamAdapter(): RecyclerView.Adapter<MyFamAdapter.MyFamViewHolder>() {
-
-    var myFamList = mutableListOf<MyFamily>()
+class MyFamAdapter(private var data: List<TestModel>): RecyclerView.Adapter<MyFamAdapter.MyFamViewHolder>() {
 
     class MyFamViewHolder(val binding: ListMyFamilyBinding) : RecyclerView.ViewHolder(binding.root) {
-//        val myFamImg = itemView.findViewById<ImageView>(R.id.img_family)
-//        val myFamName = itemView.findViewById<TextView>(R.id.family_name)
-        fun bind(currentMyFamily: MyFamily) {
-            binding.myFamily = currentMyFamily
+        fun bind(data: TestModel) {
+            binding.testModel = data
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyFamAdapter.MyFamViewHolder {
-//        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_my_family, parent, false)
-//        return MyFamViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyFamViewHolder {
         val binding = ListMyFamilyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyFamViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MyFamAdapter.MyFamViewHolder, position: Int) {
-//        holder.myFamImg.setImageResource(myFamList.get(position).myFamImg)
-//        holder.myFamName.text = myFamList.get(position).myFamName
-        holder.bind(myFamList[position])
+    override fun onBindViewHolder(holder: MyFamViewHolder, position: Int) {
+        holder.bind(data[position])
     }
 
-    override fun getItemCount(): Int {
-        return myFamList.size
-    }
-
-    fun setData(data : ArrayList<MyFamily>){
-        myFamList = data
-        notifyDataSetChanged()
-    }
+    override fun getItemCount() = data.size
 
 }

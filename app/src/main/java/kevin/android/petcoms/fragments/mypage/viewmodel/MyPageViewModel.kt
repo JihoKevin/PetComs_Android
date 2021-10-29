@@ -41,39 +41,37 @@ class MyPageViewModel @Inject constructor (private val repository: MyPageReposit
     }
 
 //    내 가족 리스트 뷰모델
-    private val _myFamList = MutableLiveData<ArrayList<MyFamily>>()
-    val myFamList : LiveData<ArrayList<MyFamily>>
+    private val _myFamList = MutableLiveData<List<TestModel>>()
+    val myFamList : LiveData<List<TestModel>>
         get() = _myFamList
 
-    private var famList = ArrayList<MyFamily>()
-
     init {
-        famList = arrayListOf(
-            MyFamily(myFamImg = R.drawable.ic_settings, "탄이아빠"),
-            MyFamily(myFamImg = R.drawable.ic_settings, "탄이삼촌")
-        )
-        _myFamList.value = famList
+        getMyFamVM()
     }
 
-//    fun btnAddFam(){
-//        val myFamily = MyFamily(R.drawable.ic_settings, "탄이엄마")
-//        famList.add(myFamily)
-//        _myFamList.value = famList
-//    }
+    fun getMyFamVM() = viewModelScope.launch {
+        repository.getTestModel().let { response ->
+            if (response.isSuccessful){
+                _myFamList.postValue(response.body())
+            } else{ }
+        }
+    }
 
     // 내 다이어리 뷰모델
-    private val _myDiaryList = MutableLiveData<ArrayList<MyDiary>>()
-    val myDiaryList : LiveData<ArrayList<MyDiary>>
+    private val _myDiaryList = MutableLiveData<List<TestModel>>()
+    val myDiaryList : LiveData<List<TestModel>>
         get() = _myDiaryList
 
-    private var diaryList = ArrayList<MyDiary>()
-
     init {
-        diaryList = arrayListOf(
-            MyDiary(DUserImg = R.drawable.ic_settings, "탄이아빠", "2020.04.05", "재밌었다"),
-            MyDiary(DUserImg = R.drawable.ic_settings, "탄이삼촌", "2020.04.05", "즐거웠다")
-        )
-        _myDiaryList.value = diaryList
+        getMyDiaryVM()
+    }
+
+    fun getMyDiaryVM() = viewModelScope.launch {
+        repository.getTestModel().let { response ->
+            if (response.isSuccessful){
+                _myDiaryList.postValue(response.body())
+            } else{ }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

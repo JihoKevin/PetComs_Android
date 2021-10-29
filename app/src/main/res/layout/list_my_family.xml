@@ -2,12 +2,13 @@
 
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="myFamily"
-            type="kevin.android.petcoms.fragments.mypage.model.MyFamily" />
+            name="testModel"
+            type="kevin.android.petcoms.fragments.mypage.model.TestModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +27,7 @@
             android:id="@+id/img_family"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@{myFamily.myFamImg}"
+            android:src="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +36,8 @@
             android:id="@+id/family_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{myFamily.myFamName}"
+            tools:text="username"
+            android:text="@{testModel.username}"
             android:textSize="24dp"
             app:layout_constraintBottom_toBottomOf="@+id/img_family"
             app:layout_constraintLeft_toRightOf="@+id/img_family"

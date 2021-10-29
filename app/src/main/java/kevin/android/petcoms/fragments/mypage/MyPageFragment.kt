@@ -29,8 +29,6 @@ class MyPageFragment : Fragment() {
         binding!!.lifecycleOwner = this
         binding!!.myPageViewModel = viewModel
 
-        myDiaryAdapter = MyDiaryAdapter()
-
         setRV()
         btnClick()
 
@@ -65,6 +63,11 @@ class MyPageFragment : Fragment() {
         viewModel.myPetsList.observe(this, Observer {
             myPetsAdapter = MyPetsAdapter(it)
             binding?.rvPets?.adapter = myPetsAdapter
+            myPetsAdapter.notifyDataSetChanged()
+        })
+        viewModel.myDiaryList.observe(this, Observer {
+            myDiaryAdapter = MyDiaryAdapter(it)
+            binding?.rvMyDiary?.adapter = myDiaryAdapter
             myPetsAdapter.notifyDataSetChanged()
         })
     }

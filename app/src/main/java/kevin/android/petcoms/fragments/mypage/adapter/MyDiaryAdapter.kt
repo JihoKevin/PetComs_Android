@@ -5,41 +5,25 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kevin.android.petcoms.databinding.ListMyDiaryBinding
 import kevin.android.petcoms.fragments.mypage.model.MyDiary
+import kevin.android.petcoms.fragments.mypage.model.TestModel
 
-class MyDiaryAdapter() : RecyclerView.Adapter<MyDiaryAdapter.MyDiaryViewHolder>() {
-
-    var myDiaryList = mutableListOf<MyDiary>()
+class MyDiaryAdapter(private var data: List<TestModel>) : RecyclerView.Adapter<MyDiaryAdapter.MyDiaryViewHolder>() {
 
     class MyDiaryViewHolder(private val binding: ListMyDiaryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(currentMyDiary: MyDiary) {
-            binding.myDiary = currentMyDiary
+        fun bind(data: TestModel) {
+            binding.testModel = data
         }
-//        fun bind(myDiary: MyDiary){
-//            binding.dUserNickname.text = myDiary.title
-//            binding.dContents.text = myDiary.body
-//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyDiaryViewHolder {
         val binding = ListMyDiaryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyDiaryViewHolder(binding)
-//        val binding = ListMyDiaryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//        return MyDiaryViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyDiaryViewHolder, position: Int) {
-        holder.bind(myDiaryList[position])
-//        val myDiary: MyDiary = myDiaryList[position]
-//        holder.bind(myDiary)
+        holder.bind(data[position])
     }
 
-    override fun getItemCount(): Int {
-        return myDiaryList.size
-    }
-
-    fun setData(data : MutableList<MyDiary>){
-        myDiaryList = data
-        notifyDataSetChanged()
-    }
+    override fun getItemCount() = data.size
 
 }

@@ -4,16 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kevin.android.petcoms.databinding.ListMyDiaryBinding
-import kevin.android.petcoms.fragments.mypage.model.MyDiary
 import kevin.android.petcoms.fragments.mypage.model.TestModel
 
 class MyDiaryAdapter(private var data: List<TestModel>) : RecyclerView.Adapter<MyDiaryAdapter.MyDiaryViewHolder>() {
 
-    class MyDiaryViewHolder(private val binding: ListMyDiaryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: TestModel) {
-            binding.testModel = data
-        }
-    }
+    class MyDiaryViewHolder(val binding: ListMyDiaryBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyDiaryViewHolder {
         val binding = ListMyDiaryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,7 +16,9 @@ class MyDiaryAdapter(private var data: List<TestModel>) : RecyclerView.Adapter<M
     }
 
     override fun onBindViewHolder(holder: MyDiaryViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.binding.dUserNickname.text = data[position].username
+        holder.binding.dDate.text = data[position].email
+        holder.binding.dContents.text = data[position].phone
     }
 
     override fun getItemCount() = data.size

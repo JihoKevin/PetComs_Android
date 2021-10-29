@@ -8,11 +8,7 @@ import kevin.android.petcoms.fragments.mypage.model.TestModel
 
 class MyPetsAdapter(private var data: List<TestModel>): RecyclerView.Adapter<MyPetsAdapter.MyPetsViewHolder>() {
 
-    class MyPetsViewHolder(val binding: ListMyPetsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: TestModel) {
-            binding.model = data
-        }
-    }
+    class MyPetsViewHolder(val binding: ListMyPetsBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyPetsViewHolder {
         val binding = ListMyPetsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,7 +16,7 @@ class MyPetsAdapter(private var data: List<TestModel>): RecyclerView.Adapter<MyP
     }
 
     override fun onBindViewHolder(holder: MyPetsViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.binding.petsName.text = data[position].username
     }
 
     override fun getItemCount() = data.size

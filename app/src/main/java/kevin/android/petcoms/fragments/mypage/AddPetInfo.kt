@@ -10,7 +10,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kevin.android.petcoms.R
 import kevin.android.petcoms.databinding.AddPetInfoBinding
 import kevin.android.petcoms.databinding.FragmentMypageBinding
-import kevin.android.petcoms.fragments.mypage.model.MyPets
 import kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel
 
 @AndroidEntryPoint
@@ -18,7 +17,6 @@ class AddPetInfo: Fragment() {
 
     private var addPetInfoBinding : AddPetInfoBinding? = null
     private var fragmentDiaryBinding: FragmentMypageBinding? = null
-    private val data = arrayListOf<MyPets>()
     private val myPageViewModel: MyPageViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

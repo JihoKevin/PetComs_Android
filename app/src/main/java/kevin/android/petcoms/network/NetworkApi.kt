@@ -1,7 +1,5 @@
 package kevin.android.petcoms.network
 
-import kevin.android.petcoms.fragments.mypage.model.MyPets
-import kevin.android.petcoms.fragments.mypage.model.TestModel
 import kevin.android.petcoms.fragments.mypage.model.TestModelDto
 import kevin.android.petcoms.models.PostModel
 import retrofit2.Response
@@ -17,8 +15,5 @@ interface NetworkApi {
 
     @GET("users")
     suspend fun getTestModel(): Response<TestModelDto>
-
-//    @GET("1")
-//    suspend fun getMyPets(): List<MyPets>
 
 }

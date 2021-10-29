@@ -3,7 +3,6 @@ package kevin.android.petcoms.fragments.mypage.adapter
 import android.annotation.SuppressLint
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kevin.android.petcoms.fragments.mypage.model.MyFamily
 
 //object MyFamBindingAdapter {
 //

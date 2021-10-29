@@ -33,7 +33,6 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:text="@{testModel.username}"
             tools:text="username"
             android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@+id/d_user_img"
@@ -45,7 +44,6 @@
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
             tools:text="dday"
-            android:text="@{myPageViewModel.currentDate.toString()}"
             app:layout_constraintBottom_toBottomOf="@+id/d_user_img"
             app:layout_constraintLeft_toRightOf="@+id/d_user_img"
             app:layout_constraintTop_toBottomOf="@+id/d_user_nickname" />
@@ -62,7 +60,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             tools:text="contents"
-            android:text="@{testModel.phone}"
             app:layout_constraintTop_toBottomOf="@+id/d_user_img" />
 
         <Button

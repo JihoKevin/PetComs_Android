@@ -3,23 +3,24 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="recordViewModel"
-                  type="kevin.android.petcoms.fragments.record.viewmodel.RecordViewModel"
+        <variable name="diaryViewModel"
+                  type="kevin.android.petcoms.fragments.diary.viewmodel.DiaryViewModel"
         />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".fragments.record.feeds.PopularFragment">
+            tools:context=".fragments.diary.feeds.PopularFragment">
 
         <TextView
+                android:id="@+id/txtExample"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@{recordViewModel.postLiveData.body().body.toString()}"/>
+                android:text="테스트"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

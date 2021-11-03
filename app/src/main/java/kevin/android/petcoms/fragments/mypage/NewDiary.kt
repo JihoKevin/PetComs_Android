@@ -41,12 +41,6 @@ class NewDiary : Fragment() {
             transaction?.remove(this)?.commit()
         }
 
-//        binding.btnDatepicker.setOnClickListener{
-//            val datePickerDialog = DatePickerDialog()
-//            val transaction= fragmentManager?.beginTransaction()
-//            transaction?.replace(R.id.new_diary, datePickerDialog)?.commit()
-//        }
-
         binding.btnDatepicker.setOnClickListener {
             DatePickerDialog().show(
                 parentFragmentManager, "DatePickerDialog"

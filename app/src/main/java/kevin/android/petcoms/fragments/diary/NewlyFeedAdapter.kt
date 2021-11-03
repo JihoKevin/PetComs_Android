@@ -1,4 +1,4 @@
-package kevin.android.petcoms.fragments.record.adapter.newlyfeed
+package kevin.android.petcoms.fragments.diary
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
 import kevin.android.petcoms.R
-import kevin.android.petcoms.models.record.RecordModel
+import kevin.android.petcoms.models.record.DiaryNewlyFeedModel
 
-class NewlyFeedAdapter(val lists: ArrayList<RecordModel>) : RecyclerView.Adapter<NewlyFeedAdapter.NewlyFeedViewHolder>() {
+class NewlyFeedAdapter(val lists: ArrayList<DiaryNewlyFeedModel>) : RecyclerView.Adapter<NewlyFeedAdapter.NewlyFeedViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewlyFeedViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.record_recycler_layout, parent, false)

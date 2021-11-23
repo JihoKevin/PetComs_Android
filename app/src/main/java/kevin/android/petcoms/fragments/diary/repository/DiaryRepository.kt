@@ -1,6 +1,6 @@
 package kevin.android.petcoms.fragments.diary.repository
 
-import kevin.android.petcoms.network.NetworkApi
+import kevin.android.petcoms.network.api.NetworkApi
 import javax.inject.Inject
 
 

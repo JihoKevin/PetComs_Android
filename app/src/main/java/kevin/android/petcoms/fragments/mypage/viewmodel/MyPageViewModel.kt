@@ -14,11 +14,11 @@ import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
-class MyPageViewModel @Inject constructor (private val repository: MyPageRepository): ViewModel() {
+class MyPageViewModel @Inject constructor(private val repository: MyPageRepository) : ViewModel() {
 
-//    반려견 리스트 뷰모델
+    //    반려견 리스트 뷰모델
     private val _myPetsList = MutableLiveData<List<TestModel>>()
-    val myPetsList : LiveData<List<TestModel>>
+    val myPetsList: LiveData<List<TestModel>>
         get() = _myPetsList
 
     init {
@@ -27,15 +27,16 @@ class MyPageViewModel @Inject constructor (private val repository: MyPageReposit
 
     fun getMyPetsVM() = viewModelScope.launch {
         repository.getTestModel().let { response ->
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 _myPetsList.postValue(response.body())
-            } else{ }
+            } else {
+            }
         }
     }
 
-//    내 가족 리스트 뷰모델
+    //    내 가족 리스트 뷰모델
     private val _myFamList = MutableLiveData<List<TestModel>>()
-    val myFamList : LiveData<List<TestModel>>
+    val myFamList: LiveData<List<TestModel>>
         get() = _myFamList
 
     init {
@@ -44,15 +45,16 @@ class MyPageViewModel @Inject constructor (private val repository: MyPageReposit
 
     fun getMyFamVM() = viewModelScope.launch {
         repository.getTestModel().let { response ->
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 _myFamList.postValue(response.body())
-            } else{ }
+            } else {
+            }
         }
     }
 
     // 내 다이어리 뷰모델
     private val _myDiaryList = MutableLiveData<List<TestModel>>()
-    val myDiaryList : LiveData<List<TestModel>>
+    val myDiaryList: LiveData<List<TestModel>>
         get() = _myDiaryList
 
     init {
@@ -61,9 +63,10 @@ class MyPageViewModel @Inject constructor (private val repository: MyPageReposit
 
     fun getMyDiaryVM() = viewModelScope.launch {
         repository.getTestModel().let { response ->
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 _myDiaryList.postValue(response.body())
-            } else{ }
+            } else {
+            }
         }
     }
 

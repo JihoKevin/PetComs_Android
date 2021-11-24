@@ -25,8 +25,6 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
             binding.txtTest.text = it.response.toString()
         })
     }
-
-
 }
 
 

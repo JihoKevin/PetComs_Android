@@ -49,5 +49,4 @@ object ApiProvider {
     @Provides
     fun providePostTest(@OkHttpClientWithoutAuthorization okHttpClient: OkHttpClient): NetworkApi =
         Client.create(okHttpClient)
-
 }

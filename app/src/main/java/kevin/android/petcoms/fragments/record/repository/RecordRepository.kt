@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class RecordRepository @Inject constructor(private val api: NetworkApi) {
 
-    //suspend fun getPost() = api.getPost()
+    suspend fun getComment(diaryId: Long) = api.getComment(diaryId)
 
 
 

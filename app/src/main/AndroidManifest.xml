@@ -14,7 +14,7 @@
             android:theme="@style/Theme.PetComs"
             android:usesCleartextTraffic="true">
         <activity
-                android:name=".PetComsBaseActivity"
+                android:name=".base.PetComsBaseActivity"
                 android:exported="false" />
         <activity android:name=".MainActivity">
             <intent-filter>

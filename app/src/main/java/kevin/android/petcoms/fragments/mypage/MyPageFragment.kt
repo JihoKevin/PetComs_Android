@@ -20,15 +20,16 @@ class MyPageFragment : PetComsBaseFragment<FragmentMypageBinding>(R.layout.fragm
 
     private val viewModel: MyPageViewModel by activityViewModels()
 
-     fun getViewBinding() = FragmentMypageBinding.inflate(layoutInflater)
-
-    override fun observeData() {
-
+    override fun initViews(view: View) {
+//        setRV()
+        btnClick()
+        binding.userNickname.text = viewModel.getMyAccount(4).toString()
     }
 
-     fun initViews() {
-        setRV()
-        btnClick()
+    override fun observeData() {
+        viewModel.myAccount.observe(viewLifecycleOwner, Observer {
+            binding.userNickname.text = it.response[4].toString()
+        })
     }
 
     //    private var binding: FragmentMypageBinding? = null
@@ -71,17 +72,17 @@ class MyPageFragment : PetComsBaseFragment<FragmentMypageBinding>(R.layout.fragm
         }
     }
 
-    private fun setRV() {
+//    private fun setRV() {
 //        viewModel.myPetsList.observe(this, Observer {
 //            val myPetsAdapter = MyPetsAdapter(it)
 //            binding.rvPets.adapter = myPetsAdapter
 //            myPetsAdapter.notifyDataSetChanged()
 //        })
-        viewModel.myDiaryList.observe(this, Observer {
-            val myDiaryAdapter = MyDiaryAdapter(it)
-            binding.rvMyDiary.adapter = myDiaryAdapter
-            myDiaryAdapter.notifyDataSetChanged()
-        })
-    }
+//        viewModel.myDiaryList.observe(this, Observer {
+//            val myDiaryAdapter = MyDiaryAdapter(it)
+//            binding.rvMyDiary.adapter = myDiaryAdapter
+//            myDiaryAdapter.notifyDataSetChanged()
+//        })
+//    }
 
 }

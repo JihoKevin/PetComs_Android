@@ -1,11 +1,12 @@
 package kevin.android.petcoms.network
 
+import com.facebook.stetho.okhttp3.BuildConfig
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kevin.android.petcoms.BuildConfig
+import kevin.android.petcoms.network.api.MyPageApi
 import kevin.android.petcoms.network.api.NetworkApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -48,5 +49,9 @@ object ApiProvider {
 
     @Provides
     fun providePostTest(@OkHttpClientWithoutAuthorization okHttpClient: OkHttpClient): NetworkApi =
+        Client.create(okHttpClient)
+
+    @Provides
+    fun provideUserId(@OkHttpClientWithoutAuthorization okHttpClient: OkHttpClient): MyPageApi =
         Client.create(okHttpClient)
 }

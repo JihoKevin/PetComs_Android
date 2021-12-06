@@ -7,11 +7,11 @@
 
     <data>
         <variable
-            name="myPageViewModel"
+            name="viewModel"
             type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel"/>
         <variable
-                name="testModel"
-                type="kevin.android.petcoms.fragments.mypage.model.TestModel"/>
+                name="model"
+                type="kevin.android.petcoms.fragments.mypage.model.MyAccount"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +37,7 @@
                 android:id="@+id/user_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                tools:text="username"
+                tools:text="nickname"
                 app:layout_constraintLeft_toRightOf="@+id/user_img"
                 app:layout_constraintTop_toTopOf="@+id/user_img"
                 android:textSize="20dp"

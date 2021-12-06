@@ -28,11 +28,11 @@ class MyFamBottomSheet: BottomSheetDialogFragment() {
         binding!!.lifecycleOwner = this
         binding!!.myPageViewModel = myPageViewModel
 
-        myPageViewModel.myFamList.observe(this, Observer {
-            adapter = MyFamAdapter(it)
-            binding?.rvMyFamily?.adapter = adapter
-            adapter.notifyDataSetChanged()
-        })
+//        myPageViewModel.myFamList.observe(this, Observer {
+//            adapter = MyFamAdapter(it)
+//            binding?.rvMyFamily?.adapter = adapter
+//            adapter.notifyDataSetChanged()
+//        })
 
         return binding!!.root
     }

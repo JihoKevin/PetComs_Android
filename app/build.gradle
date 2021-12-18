@@ -106,5 +106,6 @@ dependencies {
 
     // Calendar
     implementation 'com.github.kizitonwose:CalendarView:1.0.0'
+    implementation 'com.github.BlackBoxVision:material-calendar-view:v1.5.8'
 
 }

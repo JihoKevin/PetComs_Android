@@ -2,4 +2,7 @@
     <string name="app_name">PetComs</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="prevMonthButtonText"><![CDATA[<-]]></string>
+    <string name="nextMonthButtonText"><![CDATA[->]]></string>
+    <string name="weekDays">월 &#160; 화&#160;수&#160;목&#160;금&#160;토&#160;</string>
 </resources>

@@ -11,10 +11,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-enum class ActionType {
-    CLICK
-}
-
 @HiltViewModel
 class RecordViewModel @Inject constructor(private val recordRepository: RecordRepository) :
     ViewModel() {

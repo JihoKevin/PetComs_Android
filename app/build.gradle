@@ -105,6 +105,7 @@ dependencies {
     implementation 'com.mikhaellopez:circularprogressbar:3.0.3'
 
     // Calendar
-    implementation 'com.github.kizitonwose:CalendarView:1.0.0'
+    implementation 'com.github.kizitonwose:CalendarView:1.0.4'
+
 
 }

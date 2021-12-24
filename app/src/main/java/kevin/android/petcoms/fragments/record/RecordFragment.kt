@@ -12,7 +12,6 @@ import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import dagger.hilt.android.AndroidEntryPoint
-import io.blackbox_vision.materialcalendarview.view.CalendarView
 import kevin.android.petcoms.R
 import kevin.android.petcoms.base.PetComsBaseFragment
 import kevin.android.petcoms.databinding.CalendarDayLayoutBinding
@@ -29,23 +28,33 @@ import java.util.*
 class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
 
     private val viewModel: RecordViewModel by activityViewModels()
-    val currentMonth = YearMonth.now()
-    val firstMonth = currentMonth.minusMonths(10)
-    val lastMonth = currentMonth.plusMonths(10)
-    val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
+    private val currentMonth: YearMonth = YearMonth.now()
+    private val firstMonth = currentMonth.minusMonths(10)
+    private val lastMonth = currentMonth.plusMonths(10)
+    private val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
     private var selectedDate: LocalDate? = null
 
-    val daysOfWeek = daysOfWeekFromLocale()
+    val daysOfWeek = arrayOf(
+        DayOfWeek.SUNDAY,
+        DayOfWeek.MONDAY,
+        DayOfWeek.TUESDAY,
+        DayOfWeek.WEDNESDAY,
+        DayOfWeek.THURSDAY,
+        DayOfWeek.FRIDAY,
+        DayOfWeek.SATURDAY
+    )
 // Use the daysOfWeek to set up your month header texts:
 // Sun | Mon | Tue | Wed | Thu | Fri | Sat
 
-    override fun initViews(view: View) {
-        txtTest.setOnClickListener {
-            //viewModel.getComments(2)
-            //calendarView.notifyMonthChanged()
 
-            //calendarView.notifyCalendarChanged()
-        }
+
+    override fun initViews(view: View) {
+//        .setOnClickListener {
+//            //viewModel.getComments(2)
+//            //calendarView.notifyMonthChanged()
+//
+//            //calendarView.notifyCalendarChanged()
+//        }
 
         calendarView.dayBinder = object : DayBinder<DayViewContainer> {
             override fun create(view: View) = DayViewContainer(view)
@@ -59,7 +68,7 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
                     if (day.date == selectedDate) {
                         // If this is the selected date, show a round background and change the text color.
                         textView.setTextColor(Color.WHITE)
-                        textView.setBackgroundResource(R.drawable.ic_launcher_background)
+                        textView.setBackgroundResource(R.drawable.ic_select)
                     } else {
                         // If this is NOT the selected date, remove the background and reset the text color.
                         textView.setTextColor(Color.BLACK)
@@ -67,7 +76,7 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
                     }
                 } else {
                     // Hide in and out dates
-                    textView.visibility = View.INVISIBLE
+                    textView.setTextColor(Color.GRAY)
                 }
             }
         }
@@ -92,18 +101,11 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
                     "DECEMBER" -> container.textView.text = "${month.year}년 12월"
                 }
             }
-
         }
 
         calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
         calendarView.scrollToMonth(currentMonth)
 
-    }
-
-    override fun observeData() {
-        viewModel.comments.observe(viewLifecycleOwner, Observer {
-            binding.txtTest.text = it.response.toString()
-        })
     }
 
     inner class DayViewContainer(view: View) : ViewContainer(view) {
@@ -152,7 +154,7 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
         val textView = view.findViewById<TextView>(R.id.headerTextView)
     }
 
-    fun daysOfWeekFromLocale(): Array<DayOfWeek> {
+    private fun daysOfWeekFromLocale(): Array<DayOfWeek> {
         val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
         val daysOfWeek = DayOfWeek.values()
         // Order `daysOfWeek` array so that firstDayOfWeek is at index 0.

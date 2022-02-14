@@ -4,36 +4,28 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import dagger.hilt.android.AndroidEntryPoint
-import kevin.android.petcoms.databinding.NewDiaryBinding
-import kevin.android.petcoms.fragments.mypage.model.PostDiary
+import androidx.lifecycle.Observer
+import kevin.android.petcoms.databinding.PutDiaryBinding
+import kevin.android.petcoms.fragments.mypage.model.PutDiary
 import kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel
 import java.time.LocalDate
 
-@AndroidEntryPoint
-class NewDiary : Fragment() {
+class UpdateDiary: Fragment() {
 
-    private var newDiaryBinding : NewDiaryBinding? = null
+    private var putDiaryBinding : PutDiaryBinding? = null
     private val viewModel: MyPageViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding = NewDiaryBinding.inflate(inflater, container, false)
-        newDiaryBinding = binding
 
-        val newDiaryEditText: EditText = binding.newDiaryEditText
+        val binding = PutDiaryBinding.inflate(inflater, container, false)
+        putDiaryBinding = binding
 
-        binding.btnAddDiary.setOnClickListener {
-            if (newDiaryEditText.text.isEmpty()){
-                Toast.makeText(context, "다이어리를 작성해주세요.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
+//        binding.putDiaryEditText.text = viewModel.getMyDiary(1,"성북구대장탄이","탄이").toString()
 
-            postDiary()
-
+        binding.btnPutDiary.setOnClickListener {
+            putDiary()
             val transaction= fragmentManager?.beginTransaction()
             transaction?.remove(this)?.commit()
         }
@@ -56,21 +48,20 @@ class NewDiary : Fragment() {
         val currentDate: LocalDate = LocalDate.now()
         binding.btnDatepicker.text = currentDate.toString()
 
-        return newDiaryBinding!!.root
+        return putDiaryBinding!!.root
+
     }
 
-    private fun postDiary() {
-        val postDiary = PostDiary(
+    private fun putDiary() {
+        val putDiary = PutDiary(3,
             1,
-            3,
-            1,
-            1, newDiaryBinding!!.newDiaryEditText.text.toString(),
+            putDiaryBinding!!.putDiaryEditText.text.toString(),
             5)
-        viewModel.postDiary(postDiary)
+        viewModel.putDiary(12, putDiary)
     }
 
     override fun onDestroyView() {
-        newDiaryBinding = null
+        putDiaryBinding = null
         super.onDestroyView()
     }
 

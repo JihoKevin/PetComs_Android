@@ -1,17 +1,23 @@
 package kevin.android.petcoms.fragments.mypage.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kevin.android.petcoms.databinding.BottomsheetDiarySettingBinding
 import kevin.android.petcoms.databinding.ListMyDiaryBinding
+import kevin.android.petcoms.fragments.mypage.CommentBottomSheet
 import kevin.android.petcoms.fragments.mypage.DiarySettingBottomSheet
-import kevin.android.petcoms.fragments.mypage.model.TestModel
+import kevin.android.petcoms.fragments.mypage.MyFamBottomSheet
+import kevin.android.petcoms.fragments.mypage.model.GetMyDiary
 
-class MyDiaryAdapter(private var data: List<TestModel>) : RecyclerView.Adapter<MyDiaryAdapter.MyDiaryViewHolder>() {
+class MyDiaryAdapter(private var data: List<GetMyDiary>, fragmentManager: FragmentManager) : RecyclerView.Adapter<MyDiaryAdapter.MyDiaryViewHolder>() {
+
+    private var mFragmentManager : FragmentManager
+
+    init {
+        mFragmentManager = fragmentManager
+    }
 
     class MyDiaryViewHolder(val binding: ListMyDiaryBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -21,18 +27,20 @@ class MyDiaryAdapter(private var data: List<TestModel>) : RecyclerView.Adapter<M
     }
 
     override fun onBindViewHolder(holder: MyDiaryViewHolder, position: Int) {
-        holder.binding.dUserNickname.text = data[position].username
-        holder.binding.dDate.text = data[position].email
-        holder.binding.dContents.text = data[position].phone
+//        holder.binding.dUserNickname.text = data[position]
+        holder.binding.dDate.text = data[position].creatAt
+        holder.binding.dContents.text = data[position].text
 
         holder.binding.dSetting.setOnClickListener {
-
+            val bottomSheet = DiarySettingBottomSheet()
+            bottomSheet.show(mFragmentManager, bottomSheet.tag)
         }
-        holder.binding.dContents.setOnClickListener {
-
+        holder.binding.dComment.setOnClickListener {
+            val bottomSheet = CommentBottomSheet()
+            bottomSheet.show(mFragmentManager, bottomSheet.tag)
         }
         holder.binding.dPin.setOnClickListener {
-
+            //TODO Pin Fragment 추가 필요
         }
     }
 

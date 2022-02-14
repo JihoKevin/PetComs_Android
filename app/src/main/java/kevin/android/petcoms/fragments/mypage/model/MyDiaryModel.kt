@@ -1,7 +1,5 @@
 package kevin.android.petcoms.fragments.mypage.model
 
-import java.time.LocalDateTime
-
 enum class UserStatus{
     NORMAL,
     REST,
@@ -17,7 +15,7 @@ enum class Sex{
 data class MyAccountModel(
     val status: Int,
     val responseMessage: String,
-    val response: List<MyAccount>
+    val response: MyAccount
 )
 
 data class MyAccount(
@@ -26,12 +24,19 @@ data class MyAccount(
     val email: String,
     val password: String,
     val nickname: String,
-    val introduce: String,
-    val imageurl: String,
-    val creatAt: LocalDateTime,
-    val modifiedAt: LocalDateTime,
+    val introduction: String,
+    val imageUrl: String?,
+    val createdAt: String,
+    val modifiedAt: String,
     val dogsName: List<String>
 )
+
+//읽지 않은 알림 개수 조회 API H2
+data class GetAlarmCountModel (
+    val status: Int,
+    val responseMessage: String,
+    val response: Int
+    )
 
 //강아지 등록 API H4
 data class PostMyPetModel (
@@ -68,7 +73,7 @@ data class GetFamilyModel (
     val status: Int,
     val responseMessage: String,
     val response: List<GetFamily>
-        )
+)
 
 data class GetFamily (
     val id: Long,
@@ -77,13 +82,13 @@ data class GetFamily (
 )
 
 //강아지별 다이어리 조회 API D1
-data class MyDiaryModel (
+data class GetMyDiaryModel (
     val status: Int,
     val responseMessage: String,
-    val response: List<MyDiary>
+    val response: List<GetMyDiary>
 )
 
-data class MyDiary (
+data class GetMyDiary (
     val creatAt: String,
     val text: String,
     val commentCount: Int,
@@ -101,7 +106,7 @@ data class PostDiary (
     val userId:	Long,
     val dogId: Long,
     val howManyDogs: Int,
-    val  isPublic: Int,
+    val isPublic: Int,
     val Text: String,
     val addressId: Long
 )
@@ -131,18 +136,30 @@ data class DeleteDiaryModel (
 //data class
 
 //다이어리 댓글 상세보기 API D6
-data class CommentModel(
+data class GetCommentModel(
     val status: Int,
     val responseMessage: String,
-    val response: List<Comments>
+    val response: List<GetComment>
 )
 
-data class Comments (
+data class GetComment (
     val nickname: String,
     val imageurl: String?,
     val text: String,
     val aftertime: String,
     val commentCommentId: String
+)
+
+//다이어리 핀한수 상세보기 API D7
+data class GetPinCountModel(
+    val status: Int,
+    val responseMessage: String,
+    val response: List<GetPinCount>
+)
+
+data class GetPinCount(
+    val imageurl: String,
+    val nickName: String
 )
 
 //다이어리 댓글 작성 API D8

@@ -4,41 +4,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kevin.android.petcoms.R
 import kevin.android.petcoms.databinding.BottomsheetMyfamBinding
 import kevin.android.petcoms.fragments.mypage.adapter.MyFamAdapter
-import kevin.android.petcoms.fragments.mypage.adapter.MyPetsAdapter
 import kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel
 
 @AndroidEntryPoint
 class MyFamBottomSheet: BottomSheetDialogFragment() {
 
-    private var binding: BottomsheetMyfamBinding? = null
-    private val myPageViewModel: MyPageViewModel by activityViewModels()
-    private lateinit var adapter: MyFamAdapter
+    private var bottomSheetMyFamBinding: BottomsheetMyfamBinding? = null
+    private val viewModel: MyPageViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val binding = BottomsheetMyfamBinding.inflate(inflater, container, false)
+        bottomSheetMyFamBinding = binding
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.bottomsheet_myfam, container, false) // databinding
-        binding!!.lifecycleOwner = this
-        binding!!.myPageViewModel = myPageViewModel
+        viewModel.myFamily.observe(this, Observer {
+            val adapter = MyFamAdapter(it.response)
+            bottomSheetMyFamBinding!!.rvMyFamily.adapter = adapter
+            adapter.notifyDataSetChanged()
+        })
 
-//        myPageViewModel.myFamList.observe(this, Observer {
-//            adapter = MyFamAdapter(it)
-//            binding?.rvMyFamily?.adapter = adapter
-//            adapter.notifyDataSetChanged()
-//        })
+        return bottomSheetMyFamBinding!!.root
 
-        return binding!!.root
     }
 
     override fun onDestroyView() {
-        binding = null
+        bottomSheetMyFamBinding = null
         super.onDestroyView()
     }
 

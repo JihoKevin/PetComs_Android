@@ -6,12 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="viewModel"
-            type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel"/>
-        <variable
-                name="model"
-                type="kevin.android.petcoms.fragments.mypage.model.MyAccount"/>
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel"/>-->
+<!--        <variable-->
+<!--                name="model"-->
+<!--                type="kevin.android.petcoms.fragments.mypage.model.MyAccount"/>-->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

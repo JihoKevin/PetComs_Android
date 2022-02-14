@@ -89,7 +89,7 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="비공개" />
+                tools:text="비공개" />
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
 

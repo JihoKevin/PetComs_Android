@@ -6,12 +6,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="testModel"
-            type="kevin.android.petcoms.fragments.mypage.model.TestModel" />
-        <variable
-            name="myPageViewModel"
-            type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel" />
+<!--        <variable-->
+<!--            name="testModel"-->
+<!--            type="kevin.android.petcoms.fragments.mypage.model.TestModel" />-->
+<!--        <variable-->
+<!--            name="myPageViewModel"-->
+<!--            type="kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel" />-->
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -78,8 +78,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="0"
-            app:layout_constraintLeft_toRightOf="@+id/d_review"
-            app:layout_constraintTop_toTopOf="@+id/d_review" />
+            app:layout_constraintLeft_toRightOf="@+id/d_comment"
+            app:layout_constraintTop_toTopOf="@+id/d_comment" />
 
         <Button
             android:id="@+id/d_pin"
@@ -87,9 +87,9 @@
             android:layout_height="24dp"
             android:layout_marginStart="10dp"
             android:background="@drawable/ic_save"
-            app:layout_constraintBottom_toBottomOf="@+id/d_review"
-            app:layout_constraintLeft_toRightOf="@+id/d_review"
-            app:layout_constraintTop_toTopOf="@+id/d_review" />
+            app:layout_constraintBottom_toBottomOf="@+id/d_comment"
+            app:layout_constraintLeft_toRightOf="@+id/d_comment"
+            app:layout_constraintTop_toTopOf="@+id/d_comment" />
 
         <TextView
             android:id="@+id/d_pin_count"

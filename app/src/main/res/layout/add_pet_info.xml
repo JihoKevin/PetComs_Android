@@ -132,6 +132,7 @@
         app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_pet_breed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="10"/>
@@ -147,6 +148,7 @@
         app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_pet_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="10"/>

@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kevin.android.petcoms.databinding.ListMyFamilyBinding
-import kevin.android.petcoms.fragments.mypage.model.TestModel
+import kevin.android.petcoms.fragments.mypage.model.GetFamily
 
-class MyFamAdapter(private var data: List<TestModel>): RecyclerView.Adapter<MyFamAdapter.MyFamViewHolder>() {
+class MyFamAdapter(private var data: List<GetFamily>): RecyclerView.Adapter<MyFamAdapter.MyFamViewHolder>() {
 
     class MyFamViewHolder(val binding: ListMyFamilyBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -16,7 +16,7 @@ class MyFamAdapter(private var data: List<TestModel>): RecyclerView.Adapter<MyFa
     }
 
     override fun onBindViewHolder(holder: MyFamViewHolder, position: Int) {
-        holder.binding.familyName.text = data[position].username
+        holder.binding.familyName.text = data[position].name
     }
 
     override fun getItemCount() = data.size

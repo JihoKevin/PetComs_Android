@@ -13,17 +13,12 @@ object PrefUtil {
 
     const val PREF_REFRESH_TOKEN = "refresh_token"
 
-    const val PREF_USER_MEMBERSHIP = "user_membership"
-
     const val PREF_USER_ID = "user_id"
     const val PREF_USER_NAME = "user_name"
     const val PREF_USER_EMAIL = "user_email"
     const val PREF_USER_PHONE = "user_phone"
     const val PREF_USER_ADDRESS = "user_address"
     const val PREF_USER_POSTCODE = "user_postcode"
-
-    const val PREF_IS_SHOW_TUTORIAL = "is_show_tutorial"
-    const val PREF_IS_GENERAL_SIGN_IN = "is_general_sign_in"
 
     @JvmStatic
     fun init(context: Context) {

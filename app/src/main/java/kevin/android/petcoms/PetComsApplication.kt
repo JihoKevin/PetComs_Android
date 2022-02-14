@@ -10,10 +10,15 @@ class PetComsApplication : Application() {
         super.onCreate()
 
         initStetho()
+        initPref()
 
     }
 
     private fun initStetho() {
         Stetho.initializeWithDefaults(applicationContext)
+    }
+
+    private fun initPref() {
+        PrefUtil.init(applicationContext)
     }
 }

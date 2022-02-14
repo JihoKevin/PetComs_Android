@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.4181607865818392" />
         <entry key="app/src/main/res/drawable/ic_select.xml" value="0.20833333333333334" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/calendar_day_legend.xml" value="0.1921875" />

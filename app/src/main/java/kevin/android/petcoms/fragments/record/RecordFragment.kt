@@ -104,7 +104,8 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
         }
 
         calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
-        calendarView.scrollToMonth(currentMonth)
+       // calendarView.scrollToMonth(currentMonth)
+        calendarView.scrollToDate(LocalDate.now())
 
     }
 
@@ -145,6 +146,10 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
                 }
 
             }
+        }
+
+        private fun fetchCalendarRecord(){
+
         }
 
 

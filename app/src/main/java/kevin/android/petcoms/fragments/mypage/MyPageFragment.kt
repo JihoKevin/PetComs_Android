@@ -4,6 +4,7 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import dagger.hilt.android.AndroidEntryPoint
+import kevin.android.petcoms.PrefUtil
 import kevin.android.petcoms.R
 import kevin.android.petcoms.base.PetComsBaseFragment
 import kevin.android.petcoms.databinding.FragmentMypageBinding
@@ -40,11 +41,13 @@ class MyPageFragment : PetComsBaseFragment<FragmentMypageBinding>(R.layout.fragm
         binding.btnPetAdd.setOnClickListener{
             val addPetInfo = AddPetInfo()
             val transaction= fragmentManager?.beginTransaction()
+            binding.userNickname.text = PrefUtil.get("familyButton", "")
             transaction?.replace(R.id.myPageFragment, addPetInfo)?.commit()
         }
 
         binding.myFamily.setOnClickListener {
             val bottomSheet = MyFamBottomSheet()
+            PrefUtil.put("familyButton", "안녕하세요 누구누구 입니다.")
             bottomSheet.show(parentFragmentManager, bottomSheet.tag)
         }
     }

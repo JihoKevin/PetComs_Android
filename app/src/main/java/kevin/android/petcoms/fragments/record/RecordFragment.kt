@@ -110,6 +110,7 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
         )
     }
 
+
     /** 월 단위 모드 함수 **/
     private fun setMonthlyMode() {
         calendarView.updateMonthConfiguration(

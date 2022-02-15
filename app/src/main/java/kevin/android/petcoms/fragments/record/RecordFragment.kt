@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
+import com.kizitonwose.calendarview.model.InDateStyle
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
@@ -43,18 +44,8 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
         DayOfWeek.FRIDAY,
         DayOfWeek.SATURDAY
     )
-// Use the daysOfWeek to set up your month header texts:
-// Sun | Mon | Tue | Wed | Thu | Fri | Sat
-
-
 
     override fun initViews(view: View) {
-//        .setOnClickListener {
-//            //viewModel.getComments(2)
-//            //calendarView.notifyMonthChanged()
-//
-//            //calendarView.notifyCalendarChanged()
-//        }
 
         calendarView.dayBinder = object : DayBinder<DayViewContainer> {
             override fun create(view: View) = DayViewContainer(view)
@@ -69,6 +60,7 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
                         // If this is the selected date, show a round background and change the text color.
                         textView.setTextColor(Color.WHITE)
                         textView.setBackgroundResource(R.drawable.ic_select)
+
                     } else {
                         // If this is NOT the selected date, remove the background and reset the text color.
                         textView.setTextColor(Color.BLACK)
@@ -104,9 +96,27 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
         }
 
         calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
-       // calendarView.scrollToMonth(currentMonth)
+        // calendarView.scrollToMonth(currentMonth)
         calendarView.scrollToDate(LocalDate.now())
 
+    }
+
+    /** 주 단위 모드 함수 **/
+    private fun setWeekMode() {
+        calendarView.updateMonthConfiguration(
+            inDateStyle = InDateStyle.ALL_MONTHS,
+            maxRowCount = 1,
+            hasBoundaries = true
+        )
+    }
+
+    /** 월 단위 모드 함수 **/
+    private fun setMonthlyMode() {
+        calendarView.updateMonthConfiguration(
+            inDateStyle = InDateStyle.FIRST_MONTH,
+            maxRowCount = 6,
+            hasBoundaries = true
+        )
     }
 
     inner class DayViewContainer(view: View) : ViewContainer(view) {
@@ -148,11 +158,9 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
             }
         }
 
-        private fun fetchCalendarRecord(){
+        private fun fetchCalendarRecord() {
 
         }
-
-
     }
 
     inner class MonthViewContainer(view: View) : ViewContainer(view) {

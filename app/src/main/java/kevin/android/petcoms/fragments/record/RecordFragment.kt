@@ -4,13 +4,14 @@ import android.graphics.Color
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.model.InDateStyle
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
+import com.kizitonwose.calendarview.ui.MonthScrollListener
 import com.kizitonwose.calendarview.ui.ViewContainer
 import dagger.hilt.android.AndroidEntryPoint
 import kevin.android.petcoms.R
@@ -29,7 +30,8 @@ import java.util.*
 class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
 
     private val viewModel: RecordViewModel by activityViewModels()
-    private val currentMonth: YearMonth = YearMonth.now()
+    private var currentMonth: YearMonth = YearMonth.now()
+    private lateinit var scrollUpdateMonth: CalendarMonth
     private val firstMonth = currentMonth.minusMonths(10)
     private val lastMonth = currentMonth.plusMonths(10)
     private val firstDayOfWeek = WeekFields.of(Locale.getDefault()).firstDayOfWeek
@@ -46,6 +48,21 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
     )
 
     override fun initViews(view: View) {
+        //setWeekMode()
+
+        // bottomSheetBehavior. 아직 좀 더 손봐야함
+        BottomSheetBehavior.from(recordRecyclerContainer).apply {
+            peekHeight = 200
+            this.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+
+        switchWeekMonth.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                setWeekMode()
+            } else {
+                setMonthlyMode()
+            }
+        }
 
         calendarView.dayBinder = object : DayBinder<DayViewContainer> {
             override fun create(view: View) = DayViewContainer(view)
@@ -95,6 +112,14 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
             }
         }
 
+        // 주 단위, 월 단위 스크롤 할 때 최근 Month 캐싱 로직
+        calendarView.monthScrollListener = object : MonthScrollListener {
+            override fun invoke(calendarMonth: CalendarMonth) {
+                currentMonth = calendarMonth.yearMonth
+            }
+
+
+        }
         calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
         // calendarView.scrollToMonth(currentMonth)
         calendarView.scrollToDate(LocalDate.now())
@@ -108,6 +133,8 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
             maxRowCount = 1,
             hasBoundaries = true
         )
+        calendarView.scrollToMonth(currentMonth)
+        //calendarView.scrollToDate(LocalDate.now())
     }
 
 
@@ -118,6 +145,7 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
             maxRowCount = 6,
             hasBoundaries = true
         )
+        calendarView.scrollToMonth(currentMonth)
     }
 
     inner class DayViewContainer(view: View) : ViewContainer(view) {

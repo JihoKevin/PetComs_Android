@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.activityViewModels
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -48,19 +47,24 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
     )
 
     override fun initViews(view: View) {
-        //setWeekMode()
-
-        // bottomSheetBehavior. 아직 좀 더 손봐야함
-        BottomSheetBehavior.from(recordRecyclerContainer).apply {
-            peekHeight = 200
-            this.state = BottomSheetBehavior.STATE_COLLAPSED
+        var nowDayOfWeek = ""
+        when (Calendar.getInstance().get(Calendar.DAY_OF_WEEK)) {
+            1 -> nowDayOfWeek = "일요일"
+            2 -> nowDayOfWeek = "월요일"
+            3 -> nowDayOfWeek = "화요일"
+            4 -> nowDayOfWeek = "수요일"
+            5 -> nowDayOfWeek = "목요일"
+            6 -> nowDayOfWeek = "금요일"
+            7 -> nowDayOfWeek = "토요일"
         }
-
+        textDayInfo.text = LocalDate.now().toString().substring(8) + "일 " + nowDayOfWeek
         switchWeekMonth.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 setWeekMode()
+                textWeekMonthMode.text = "주"
             } else {
                 setMonthlyMode()
+                textWeekMonthMode.text = "월"
             }
         }
 
@@ -77,7 +81,16 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
                         // If this is the selected date, show a round background and change the text color.
                         textView.setTextColor(Color.WHITE)
                         textView.setBackgroundResource(R.drawable.ic_select)
-
+                        val clickedDate = day.date.dayOfMonth.toString()
+                        when (day.date.dayOfWeek) {
+                            DayOfWeek.SUNDAY -> textDayInfo.text = clickedDate + "일 " + "일요일"
+                            DayOfWeek.MONDAY -> textDayInfo.text = clickedDate + "일 " + "월요일"
+                            DayOfWeek.TUESDAY -> textDayInfo.text = clickedDate + "일 " + "화요일"
+                            DayOfWeek.WEDNESDAY -> textDayInfo.text = clickedDate + "일 " + "수요일"
+                            DayOfWeek.THURSDAY -> textDayInfo.text = clickedDate + "일 " + "목요일"
+                            DayOfWeek.FRIDAY -> textDayInfo.text = clickedDate + "일 " + "금요일"
+                            DayOfWeek.SATURDAY -> textDayInfo.text = clickedDate + "일 " + "토요일"
+                        }
                     } else {
                         // If this is NOT the selected date, remove the background and reset the text color.
                         textView.setTextColor(Color.BLACK)
@@ -92,22 +105,24 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
 
 
         calendarView.monthHeaderBinder = object : MonthHeaderFooterBinder<MonthViewContainer> {
-            override fun create(view: View) = MonthViewContainer(view)
-            override fun bind(container: MonthViewContainer, month: CalendarMonth) {
+            override fun create(view: View) = MonthViewContainer(view).apply {
+                this.monthHeaderTextView.setTextColor(Color.BLACK)
+            }
 
+            override fun bind(container: MonthViewContainer, month: CalendarMonth) {
                 when (month.yearMonth.month.name) {
-                    "JANUARY" -> container.textView.text = "${month.year}년 1월"
-                    "FEBRUARY" -> container.textView.text = "${month.year}년 2월"
-                    "MARCH" -> container.textView.text = "${month.year}년 3월"
-                    "APRIL" -> container.textView.text = "${month.year}년 4월"
-                    "MAY" -> container.textView.text = "${month.year}년 5월"
-                    "JUNE" -> container.textView.text = "${month.year}년 6월"
-                    "JULY" -> container.textView.text = "${month.year}년 7월"
-                    "AUGUST" -> container.textView.text = "${month.year}년 8월"
-                    "SEPTEMBER" -> container.textView.text = "${month.year}년 9월"
-                    "OCTOBER" -> container.textView.text = "${month.year}년 10월"
-                    "NOVEMBER" -> container.textView.text = "${month.year}년 11월"
-                    "DECEMBER" -> container.textView.text = "${month.year}년 12월"
+                    "JANUARY" -> container.monthHeaderTextView.text = "${month.year}년 1월"
+                    "FEBRUARY" -> container.monthHeaderTextView.text = "${month.year}년 2월"
+                    "MARCH" -> container.monthHeaderTextView.text = "${month.year}년 3월"
+                    "APRIL" -> container.monthHeaderTextView.text = "${month.year}년 4월"
+                    "MAY" -> container.monthHeaderTextView.text = "${month.year}년 5월"
+                    "JUNE" -> container.monthHeaderTextView.text = "${month.year}년 6월"
+                    "JULY" -> container.monthHeaderTextView.text = "${month.year}년 7월"
+                    "AUGUST" -> container.monthHeaderTextView.text = "${month.year}년 8월"
+                    "SEPTEMBER" -> container.monthHeaderTextView.text = "${month.year}년 9월"
+                    "OCTOBER" -> container.monthHeaderTextView.text = "${month.year}년 10월"
+                    "NOVEMBER" -> container.monthHeaderTextView.text = "${month.year}년 11월"
+                    "DECEMBER" -> container.monthHeaderTextView.text = "${month.year}년 12월"
                 }
             }
         }
@@ -117,8 +132,6 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
             override fun invoke(calendarMonth: CalendarMonth) {
                 currentMonth = calendarMonth.yearMonth
             }
-
-
         }
         calendarView.setup(firstMonth, lastMonth, daysOfWeek.first())
         // calendarView.scrollToMonth(currentMonth)
@@ -136,7 +149,6 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
         calendarView.scrollToMonth(currentMonth)
         //calendarView.scrollToDate(LocalDate.now())
     }
-
 
     /** 월 단위 모드 함수 **/
     private fun setMonthlyMode() {
@@ -186,14 +198,10 @@ class RecordFragment : PetComsBaseFragment<FragmentRecordBinding>(R.layout.fragm
 
             }
         }
-
-        private fun fetchCalendarRecord() {
-
-        }
     }
 
     inner class MonthViewContainer(view: View) : ViewContainer(view) {
-        val textView = view.findViewById<TextView>(R.id.headerTextView)
+        val monthHeaderTextView = view.findViewById<TextView>(R.id.headerTextView)
     }
 
     private fun daysOfWeekFromLocale(): Array<DayOfWeek> {

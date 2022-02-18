@@ -4,6 +4,6 @@
         android:thickness="23dp"
         android:shape="ring"
         android:useLevel="false">
-    <solid android:color="#f79256" />
+    <solid android:color="#8179af" />
     <corners android:radius="10dp"/>
 </shape>

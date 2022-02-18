@@ -29,6 +29,14 @@ class NewlyFragment : Fragment() {
 
         val recy = arrayListOf(
             DiaryNewlyFeedModel("9/25", "00:20", R.drawable.ic_launcher_foreground, "탄이아빠", "서울동물병원"),
+            DiaryNewlyFeedModel("9/26", "00:12", R.drawable.ic_launcher_foreground, "케빈", "부산동물병원"),
+            DiaryNewlyFeedModel("9/26", "00:12", R.drawable.ic_launcher_foreground, "케빈", "부산동물병원"),
+            DiaryNewlyFeedModel("9/26", "00:12", R.drawable.ic_launcher_foreground, "케빈", "부산동물병원"),
+            DiaryNewlyFeedModel("9/26", "00:12", R.drawable.ic_launcher_foreground, "케빈", "부산동물병원"),
+            DiaryNewlyFeedModel("9/26", "00:12", R.drawable.ic_launcher_foreground, "케빈", "부산동물병원"),
+            DiaryNewlyFeedModel("9/26", "00:12", R.drawable.ic_launcher_foreground, "케빈", "부산동물병원"),
+            DiaryNewlyFeedModel("9/26", "00:12", R.drawable.ic_launcher_foreground, "케빈", "부산동물병원"),
+            DiaryNewlyFeedModel("9/26", "00:12", R.drawable.ic_launcher_foreground, "케빈", "부산동물병원"),
             DiaryNewlyFeedModel("9/26", "00:12", R.drawable.ic_launcher_foreground, "케빈", "부산동물병원")
 
         )

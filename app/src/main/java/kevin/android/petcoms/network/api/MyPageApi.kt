@@ -16,7 +16,7 @@ interface MyPageApi {
     suspend fun postMyPet(@Path("userId") userId: Long, @Body postMyPet: PostMyPet): PostMyPetModel
 
     @GET("list/pin/{userId}")
-    suspend fun getMyPin(@Path("userId") userId: Long): GetMyPinModel
+    suspend fun getMyPin(@Path("userId") userId: Long): Response<GetMyPinModel>
 
     @GET("family/{userId}")
     suspend fun getMyFamily(@Path("userId") userId: Long): Response<GetFamilyModel>
@@ -25,7 +25,8 @@ interface MyPageApi {
     suspend fun getMyDiary(
         @Path("userId") userId: Long,
         @Path("nickName") nickName: String,
-        @Path("dogName") dogName: String): Response<GetMyDiaryModel>
+        @Path("dogName") dogName: String
+    ): Response<GetMyDiaryModel>
 
     @POST("diary")
     suspend fun postDiary(@Body postDiary: PostDiary): PostDiaryModel
@@ -40,7 +41,7 @@ interface MyPageApi {
     suspend fun getComment(@Path("diaryId") diaryId: Long): Response<GetCommentModel>
 
     @GET("pin/diary/{diaryId}")
-    suspend fun getPinCount(@Path("diaryId") diaryId: Long): GetPinCountModel
+    suspend fun getPinCount(@Path("diaryId") diaryId: Long): Response<GetPinCountModel>
 
     @POST("comment") //D8
     suspend fun postComment(@Body postComment: PostComment): PostCommentModel

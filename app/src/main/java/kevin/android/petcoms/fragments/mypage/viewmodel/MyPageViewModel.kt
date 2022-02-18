@@ -33,11 +33,20 @@ class MyPageViewModel @Inject constructor(private val repository: MyPageReposito
     }
 
     //내 핀 목록 조회 API H6
-    val myPin: MutableLiveData<GetMyPinModel> by lazy {
-        MutableLiveData<GetMyPinModel>()
+    private val _myPin = MutableLiveData<GetMyPinModel>()
+    val myPin: LiveData<GetMyPinModel>
+        get() = _myPin
+
+    init {
+        getMyPin(1)
     }
+
     fun getMyPin(userId: Long) = viewModelScope.launch {
-        myPin.value = repository.getMyPin(userId)
+        repository.getMyPin(userId).let { response ->
+            if (response.isSuccessful) {
+                _myPin.postValue(response.body())
+            }
+        }
     }
 
     //내 가족 목록 조회 API H7
@@ -111,6 +120,23 @@ class MyPageViewModel @Inject constructor(private val repository: MyPageReposito
         repository.getComment(diaryId).let { response ->
             if (response.isSuccessful) {
                 _comment.postValue(response.body())
+            }
+        }
+    }
+
+    //다이어리 핀한수 상세보기 API D7
+    private val _pinCount = MutableLiveData<GetPinCountModel>()
+    val pinCount: LiveData<GetPinCountModel>
+        get() = _pinCount
+
+    init {
+        getPinCount(9)
+    }
+
+    fun getPinCount(diaryId: Long) = viewModelScope.launch {
+        repository.getPinCount(diaryId).let { response ->
+            if (response.isSuccessful) {
+                _pinCount.postValue(response.body())
             }
         }
     }

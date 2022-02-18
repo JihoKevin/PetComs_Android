@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kevin.android.petcoms.network.api.DiaryApi
 import kevin.android.petcoms.network.api.MyPageApi
 import kevin.android.petcoms.network.api.NetworkApi
 import okhttp3.OkHttpClient
@@ -78,5 +79,9 @@ object ApiProvider {
 
     @Provides
     fun provideUserId(@OkHttpClientWithoutAuthorization okHttpClient: OkHttpClient): MyPageApi =
+        Client.create(okHttpClient)
+
+    @Provides
+    fun provideDiaryApi(@OkHttpClientWithoutAuthorization okHttpClient: OkHttpClient): DiaryApi =
         Client.create(okHttpClient)
 }

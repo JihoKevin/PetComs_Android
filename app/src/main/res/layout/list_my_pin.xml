@@ -6,7 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/list_diary_popular"
+            android:id="@+id/list_my_diary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="20dp">

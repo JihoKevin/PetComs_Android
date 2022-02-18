@@ -1,10 +1,12 @@
 package kevin.android.petcoms.fragments.diary.repository
 
-import kevin.android.petcoms.network.api.NetworkApi
+import kevin.android.petcoms.network.api.DiaryApi
 import javax.inject.Inject
 
+class DiaryRepository @Inject constructor(private val api: DiaryApi)  {
 
-class DiaryRepository @Inject constructor(private val api: NetworkApi)  {
+    suspend fun getAllDiary(sorted: String) = api.getAllDiary(sorted) //S1
 
-    suspend fun getPost() = api.getPost()
+    suspend fun getUserProfile(userName: String) = api.getUserProfile(userName) //S9
+
 }

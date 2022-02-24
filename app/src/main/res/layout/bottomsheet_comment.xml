@@ -12,7 +12,7 @@
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_comment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toTopOf="@+id/edit_comment"
             app:layout_constraintTop_toTopOf="parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
@@ -35,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
         app:endIconMode="custom"
-        app:endIconDrawable="@drawable/ic_add">
+        app:endIconDrawable="@drawable/ic_add"
+        android:hint="다이어리에 댓글을 남겨보세요!">
         <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/post_comment"
                 android:layout_width="match_parent"

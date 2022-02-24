@@ -6,14 +6,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kevin.android.petcoms.fragments.diary.model.GetAllDiaryModel
+import kevin.android.petcoms.fragments.diary.model.GetDogProfileModel
 import kevin.android.petcoms.fragments.diary.model.GetUserProfileModel
 import kevin.android.petcoms.fragments.diary.repository.DiaryRepository
-import kevin.android.petcoms.fragments.mypage.model.GetMyDiaryModel
-import kevin.android.petcoms.fragments.mypage.model.MyAccountModel
-import kevin.android.petcoms.models.PostModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,12 +33,20 @@ class DiaryViewModel @Inject constructor(private val repository: DiaryRepository
     }
 
     //S9
-
     val userProfile: MutableLiveData<GetUserProfileModel> by lazy {
         MutableLiveData<GetUserProfileModel>()
     }
     fun getUserProfile(userName: String) = viewModelScope.launch {
         userProfile.value = repository.getUserProfile(userName)
+    }
+
+    //H5
+    val dogProfile: MutableLiveData<GetDogProfileModel> by lazy {
+        MutableLiveData<GetDogProfileModel>()
+    }
+
+    fun getDogProfile(nickName: String, dogName: String) = viewModelScope.launch {
+        dogProfile.value = repository.getDogProfile(nickName, dogName)
     }
 
 //    private val _userProfile = MutableLiveData<GetUserProfileModel>()
@@ -57,6 +61,22 @@ class DiaryViewModel @Inject constructor(private val repository: DiaryRepository
 //        repository.getUserProfile(userName).let { response ->
 //            if (response.isSuccessful) {
 //                _userProfile.postValue(response.body())
+//            }
+//        }
+//    }
+
+//    private val _dogProfile = MutableLiveData<GetDogProfileModel>()
+//    val dogProfile: LiveData<GetDogProfileModel>
+//        get() = _dogProfile
+//
+//    init {
+//        getDogProfile("")
+//    }
+//
+//    fun getDogProfile(nickName: String, dogName: String) = viewModelScope.launch {
+//        repository.getDogProfile(nickName, dogName).let { response ->
+//            if (response.isSuccessful) {
+//                _dogProfile.postValue(response.body())
 //            }
 //        }
 //    }

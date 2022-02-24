@@ -9,4 +9,6 @@ class DiaryRepository @Inject constructor(private val api: DiaryApi)  {
 
     suspend fun getUserProfile(userName: String) = api.getUserProfile(userName) //S9
 
+    suspend fun getDogProfile(nickName: String, dogName: String) = api.getDogProfile(nickName, dogName) //강아지별 프로필 조회 API H5
+
 }

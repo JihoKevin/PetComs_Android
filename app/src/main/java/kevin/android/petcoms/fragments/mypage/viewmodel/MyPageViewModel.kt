@@ -1,5 +1,6 @@
 package kevin.android.petcoms.fragments.mypage.viewmodel
 
+import android.graphics.Bitmap
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
@@ -10,6 +11,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kevin.android.petcoms.fragments.mypage.model.*
 import kevin.android.petcoms.fragments.mypage.repository.MyPageRepository
 import kotlinx.coroutines.launch
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okio.BufferedSink
+import java.io.File
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -20,17 +28,54 @@ class MyPageViewModel @Inject constructor(private val repository: MyPageReposito
     val myAccount: MutableLiveData<MyAccountModel> by lazy {
         MutableLiveData<MyAccountModel>()
     }
+
     fun getUserId(userId: Long) = viewModelScope.launch {
         myAccount.value = repository.getUserId(userId)
+    }
+
+    //읽지 않은 알림 개수 조회 API H2
+    val alarmCount: MutableLiveData<GetAlarmCountModel> by lazy {
+        MutableLiveData<GetAlarmCountModel>()
+    }
+
+    fun getAlarmCount(userId: Long) = viewModelScope.launch {
+        alarmCount.value = repository.getAlarmCount(userId)
+    }
+
+    //알림 목록 조회 API H3
+    private val _alarmList = MutableLiveData<GetShowAlarmListModel>()
+    val alarmList: LiveData<GetShowAlarmListModel>
+        get() = _alarmList
+
+    init {
+        getShowAlarmList(1)
+    }
+
+    fun getShowAlarmList(userId: Long) = viewModelScope.launch {
+        repository.getShowAlarmList(userId).let { response ->
+            if (response.isSuccessful) {
+                _alarmList.postValue(response.body())
+            }
+        }
     }
 
     //강아지 등록 API H4
     val myPet: MutableLiveData<PostMyPetModel> by lazy {
         MutableLiveData<PostMyPetModel>()
     }
+
     fun postMyPet(userId: Long, postMyPet: PostMyPet) = viewModelScope.launch {
         myPet.value = repository.postMyPet(userId, postMyPet)
     }
+
+    //강아지별 프로필 조회 API H5
+//    val dogProfile: MutableLiveData<GetDogProfileModel> by lazy {
+//        MutableLiveData<GetDogProfileModel>()
+//    }
+//
+//    fun getDogProfile(nickName: String, dogName: String) = viewModelScope.launch {
+//        dogProfile.value = repository.getDogProfile(nickName, dogName)
+//    }
 
     //내 핀 목록 조회 API H6
     private val _myPin = MutableLiveData<GetMyPinModel>()
@@ -66,6 +111,40 @@ class MyPageViewModel @Inject constructor(private val repository: MyPageReposito
         }
     }
 
+    //프로필 이미지 업로드 API H10
+//    val profileImage: MutableLiveData<UploadProfileImageModel> by lazy {
+//        MutableLiveData<UploadProfileImageModel>()
+//    }
+//
+//    fun uploadProfileImage(userId: Long, profileImage: MultipartBody.Part?) = viewModelScope.launch {
+//
+//        profileImage.value = repository.uploadProfileImage(userId, profileImage)
+//    }
+//
+//    fun getImageBody(key: String, file: File): MultipartBody.Part {
+//        return MultipartBody.Part.createFormData(
+//            name = key,
+//            filename = file.name,
+//            body = file.asRequestBody("image/*".toMediaType())
+//        )
+//    }
+
+//    fun sendAddRequest() {
+//        viewModelScope.launch {
+//            val bitmapRequestBody = bitmap?.let { BitmapRequestBody(it) }
+//            val bitmapMultipartBody: MultipartBody.Part? =
+//                if (bitmapRequestBody == null) null
+//                else MultipartBody.Part.createFormData("profileImage", bitmapRequestBody)
+//        }
+//    }
+//
+//    inner class BitmapRequestBody(private val bitmap: Bitmap) : RequestBody() {
+//        override fun contentType(): MediaType = "image/jpeg".toMediaType()
+//        override fun writeTo(sink: BufferedSink) {
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, 99, sink.outputStream())
+//        }
+//    }
+
     //강아지별 다이어리 조회 API D1
     private val _myDiary = MutableLiveData<GetMyDiaryModel>()
     val myDiary: LiveData<GetMyDiaryModel>
@@ -87,6 +166,7 @@ class MyPageViewModel @Inject constructor(private val repository: MyPageReposito
     val postMyDiary: MutableLiveData<PostDiaryModel> by lazy {
         MutableLiveData<PostDiaryModel>()
     }
+
     fun postDiary(postDiary: PostDiary) = viewModelScope.launch {
         postMyDiary.value = repository.postDiary(postDiary)
     }
@@ -95,6 +175,7 @@ class MyPageViewModel @Inject constructor(private val repository: MyPageReposito
     val putMyDiary: MutableLiveData<PutDiaryModel> by lazy {
         MutableLiveData<PutDiaryModel>()
     }
+
     fun putDiary(diaryId: Long, putDiary: PutDiary) = viewModelScope.launch {
         putMyDiary.value = repository.putDiary(diaryId, putDiary)
     }
@@ -103,18 +184,24 @@ class MyPageViewModel @Inject constructor(private val repository: MyPageReposito
     val deleteMyDiary: MutableLiveData<DeleteDiaryModel> by lazy {
         MutableLiveData<DeleteDiaryModel>()
     }
+
     fun deleteDiary(diaryId: Long) = viewModelScope.launch {
         deleteMyDiary.value = repository.deleteDiary(diaryId)
+    }
+
+    //다이어리 공유 설정 변경 API D5
+    val changePrivate: MutableLiveData<ChangePrivateModel> by lazy {
+        MutableLiveData<ChangePrivateModel>()
+    }
+
+    fun changePrivate(diaryId: Long) = viewModelScope.launch {
+        changePrivate.value = repository.changePrivate(diaryId)
     }
 
     //다이어리 댓글 상세보기 API D6
     private val _comment = MutableLiveData<GetCommentModel>()
     val comment: LiveData<GetCommentModel>
         get() = _comment
-
-    init {
-        getComment(9)
-    }
 
     fun getComment(diaryId: Long) = viewModelScope.launch {
         repository.getComment(diaryId).let { response ->
@@ -145,6 +232,7 @@ class MyPageViewModel @Inject constructor(private val repository: MyPageReposito
     val postComment: MutableLiveData<PostCommentModel> by lazy {
         MutableLiveData<PostCommentModel>()
     }
+
     fun postComment(postComment: PostComment) = viewModelScope.launch {
         this@MyPageViewModel.postComment.value = repository.postComment(postComment)
     }

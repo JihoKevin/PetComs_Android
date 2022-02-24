@@ -15,7 +15,7 @@
                 android:id="@+id/d_user_img"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@color/black"
+                tools:src="@color/black"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

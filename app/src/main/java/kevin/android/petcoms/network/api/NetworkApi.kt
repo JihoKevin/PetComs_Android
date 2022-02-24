@@ -1,6 +1,5 @@
 package kevin.android.petcoms.network.api
 
-import kevin.android.petcoms.fragments.mypage.model.TestModel
 import kevin.android.petcoms.fragments.record.model.CommentModel
 import kevin.android.petcoms.models.PostModel
 import retrofit2.Response

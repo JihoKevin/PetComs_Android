@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/edit_diary"
+            android:title="수정하기" />
+    <item
+            android:id="@+id/delete_diary"
+            android:title="삭제하기" />
+    <item
+            android:id="@+id/change_private"
+            android:title="공개 전환하기" />
+
+</menu>

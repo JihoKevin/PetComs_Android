@@ -1,67 +1,65 @@
 package kevin.android.petcoms.fragments.mypage
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import dagger.hilt.android.AndroidEntryPoint
+import kevin.android.petcoms.PrefUtil
+import kevin.android.petcoms.R
+import kevin.android.petcoms.base.PetComsBaseFragment
 import kevin.android.petcoms.databinding.UpdateDiaryBinding
 import kevin.android.petcoms.fragments.mypage.model.PutDiary
 import kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel
 import java.time.LocalDate
 
-class UpdateDiary: Fragment() {
+@AndroidEntryPoint
+class UpdateDiary : PetComsBaseFragment<UpdateDiaryBinding>(R.layout.update_diary) {
 
-    private var updateDiaryBinding : UpdateDiaryBinding? = null
     private val viewModel: MyPageViewModel by activityViewModels()
+    private val currentDate: LocalDate = LocalDate.now()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun initViews(view: View) {
+        initButton()
+//        binding.btnDatepicker.text = currentDate.toString()
+        binding.putDiaryEditText.setText(arguments!!.getString("content"))
+//        binding.btnDatepicker.text = arguments!!.getString("date")
+    }
 
-        val binding = UpdateDiaryBinding.inflate(inflater, container, false)
-        updateDiaryBinding = binding
+    override fun observeData() {
 
-//        binding.putDiaryEditText.text = viewModel.getMyDiary(1,"성북구대장탄이","탄이").toString()
+    }
+
+    private fun initButton() {
 
         binding.btnPutDiary.setOnClickListener {
             putDiary()
-            val transaction= fragmentManager?.beginTransaction()
+            val transaction = fragmentManager?.beginTransaction()
             transaction?.remove(this)?.commit()
         }
-
-        binding.btnClose.setOnClickListener{
-            val transaction= fragmentManager?.beginTransaction()
-            transaction?.remove(this)?.commit()
-        }
-
-        binding.btnDatepicker.setOnClickListener {
-            DatePickerDialog().show(
-                parentFragmentManager, "DatePickerDialog"
-            )
-        }
-
-        binding.btnDiaryPrivate.setOnClickListener {
-            binding.btnDiaryPrivate.text = "공개"
-        }
-
-        val currentDate: LocalDate = LocalDate.now()
-        binding.btnDatepicker.text = currentDate.toString()
-
-        return updateDiaryBinding!!.root
-
+//
+//        binding.btnClose.setOnClickListener {
+//            val transaction = fragmentManager?.beginTransaction()
+//            transaction?.remove(this)?.commit()
+//        }
+//
+//        binding.btnDatepicker.setOnClickListener {
+//            DatePickerDialog().show(
+//                parentFragmentManager, "DatePickerDialog"
+//            )
+//        }
+//
+//        binding.btnDiaryPrivate.setOnClickListener {
+//            binding.btnDiaryPrivate.text = "공개"
+//        }
+//
     }
 
     private fun putDiary() {
-        val putDiary = PutDiary(3,
+        val putDiary = PutDiary(
+            3,
             1,
-            updateDiaryBinding!!.putDiaryEditText.text.toString(),
-            5)
-        viewModel.putDiary(12, putDiary)
-    }
-
-    override fun onDestroyView() {
-        updateDiaryBinding = null
-        super.onDestroyView()
+            binding.putDiaryEditText.text.toString()
+        )
+        viewModel.putDiary(arguments?.getLong("diaryID")!!, putDiary)
     }
 
 }

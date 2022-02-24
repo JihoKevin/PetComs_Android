@@ -4,14 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kevin.android.petcoms.R
 import kevin.android.petcoms.databinding.ListAllDiaryBinding
-import kevin.android.petcoms.databinding.ListMyDiaryBinding
 import kevin.android.petcoms.fragments.diary.AccountProfileFragment
 import kevin.android.petcoms.fragments.diary.model.GetAllDiary
-import kevin.android.petcoms.fragments.mypage.CommentBottomSheet
-import kevin.android.petcoms.fragments.mypage.NewDiary
-import kevin.android.petcoms.fragments.mypage.adapter.MyDiaryAdapter
 
 class AllDiaryAdapter(private var data: List<GetAllDiary>, fragmentManager: FragmentManager) : RecyclerView.Adapter<AllDiaryAdapter.AllDiaryViewHolder>() {
 
@@ -29,6 +26,7 @@ class AllDiaryAdapter(private var data: List<GetAllDiary>, fragmentManager: Frag
     }
 
     override fun onBindViewHolder(holder: AllDiaryViewHolder, position: Int) {
+        Glide.with(holder.itemView.context).load(data[position].imageUrl).into(holder.binding.dUserImg)
         holder.binding.dUserNickname.text = data[position].nickName
         holder.binding.dDate.text = data[position].registeredAt
         holder.binding.dContents.text = data[position].text
@@ -47,12 +45,19 @@ class AllDiaryAdapter(private var data: List<GetAllDiary>, fragmentManager: Frag
             transaction?.replace(R.id.diaryFragment, accountProfileFragment)?.commit()
         }
 
-        holder.binding.dComment.setOnClickListener {
-            val bottomSheet = CommentBottomSheet()
-            bottomSheet.show(mFragmentManager, bottomSheet.tag)
-        }
+//        holder.binding.dComment.setOnClickListener {
+//            val bottomSheet = CommentBottomSheet()
+//            bottomSheet.show(mFragmentManager, bottomSheet.tag)
+//        }
 
         holder.binding.dPin.setOnClickListener {
+
+        }
+
+        holder.binding.dPinCount.setOnClickListener {
+
+        }
+        fun pinEvent() {
 
         }
     }

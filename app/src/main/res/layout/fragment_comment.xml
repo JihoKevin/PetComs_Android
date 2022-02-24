@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/list_my_diary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:background="#fff">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/c_user_img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@color/black"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/c_user_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                tools:text="username"
+                android:textSize="20sp"
+                app:layout_constraintLeft_toRightOf="@+id/c_user_img"
+                app:layout_constraintTop_toTopOf="@+id/c_user_img"/>
+
+        <TextView
+                android:id="@+id/c_date"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                tools:text="dday"
+                app:layout_constraintBottom_toBottomOf="@+id/c_user_img"
+                app:layout_constraintLeft_toRightOf="@+id/c_user_img"
+                app:layout_constraintTop_toBottomOf="@+id/c_user_nickname"/>
+
+        <Button
+                android:id="@+id/c_setting"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/c_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:text="contents"
+                app:layout_constraintTop_toBottomOf="@+id/c_user_img"/>
+
+        <Button
+                android:id="@+id/c_comment"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_comment"
+                android:textAlignment="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/d_pin"
+                app:layout_constraintTop_toBottomOf="@+id/c_content"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="0"
+                app:layout_constraintLeft_toRightOf="@+id/c_comment"
+                app:layout_constraintTop_toTopOf="@+id/c_comment"/>
+
+        <Button
+                android:id="@+id/d_pin"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_save"
+                app:layout_constraintBottom_toBottomOf="@+id/c_comment"
+                app:layout_constraintLeft_toRightOf="@+id/c_comment"
+                app:layout_constraintTop_toTopOf="@+id/c_comment"/>
+
+        <TextView
+                android:id="@+id/c_pin_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="0"
+                app:layout_constraintLeft_toRightOf="@+id/d_pin"
+                app:layout_constraintTop_toTopOf="@+id/d_pin"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_comment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                app:layout_constraintTop_toBottomOf="@+id/c_comment"
+                app:layout_constraintBottom_toTopOf="@+id/edit_comment_layout"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <LinearLayout
+                android:id="@+id/edit_comment_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    tools:src="@color/black"
+            />
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/post_comment_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconMode="custom"
+                    app:endIconDrawable="@drawable/ic_add"
+                    android:hint="다이어리에 댓글을 남겨보세요!">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/post_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="8dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

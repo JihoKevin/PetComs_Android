@@ -1,5 +1,7 @@
 package kevin.android.petcoms.fragments.diary.model
 
+import kevin.android.petcoms.fragments.mypage.model.Sex
+
 // S1
 data class GetAllDiaryModel(
     val status: Int,
@@ -33,4 +35,21 @@ data class GetUserProfile(
     val badge: String,
     val nickName: String,
     val imagUrl: String
+)
+
+//강아지별 프로필 조회 API H5
+data class GetDogProfileModel(
+    val status: Int,
+    val responseMessage: String,
+    val response: List<GetDogProfile>
+)
+
+data class GetDogProfile(
+    val imageurl: String,
+    val birthday: String,
+    val weight: Float,
+    val sex: Sex,
+    val name: String,
+    val breed: String,
+    val age: Int
 )

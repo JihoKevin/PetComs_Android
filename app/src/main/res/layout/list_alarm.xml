@@ -17,7 +17,7 @@
                 android:padding="8dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/c_user_img"
+                    android:id="@+id/a_user_img"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -25,39 +25,33 @@
                     tools:src="@color/black"/>
 
             <TextView
-                    android:id="@+id/c_user_nickname"
+                    android:id="@+id/a_user_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="nickname"
-                    app:layout_constraintLeft_toRightOf="@+id/c_user_img"
-                    app:layout_constraintTop_toTopOf="@+id/c_user_img"
+                    tools:text="nickname" app:layout_constraintLeft_toRightOf="@+id/a_user_img"
+                    app:layout_constraintTop_toTopOf="@+id/a_user_img"
+                    app:layout_constraintBottom_toBottomOf="@+id/a_user_img"
                     android:layout_marginStart="8dp"/>
 
             <TextView
-                    android:id="@+id/comment"
+                    android:id="@+id/a_message"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintLeft_toRightOf="@+id/c_user_img"
-                    tools:text="comment"
-                    app:layout_constraintTop_toBottomOf="@+id/c_user_nickname"
-                    android:layout_marginStart="8dp"/>
+                    tools:text="message"
+                    app:layout_constraintLeft_toRightOf="@+id/a_user_nickname"
+                    app:layout_constraintTop_toTopOf="@+id/a_user_nickname"
+            />
 
             <TextView
-                    android:id="@+id/c_time"
+                    android:id="@+id/a_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:text="time"
-                    app:layout_constraintTop_toBottomOf="@+id/comment"
-                    app:layout_constraintLeft_toLeftOf="@+id/comment"/>
-
-            <TextView
-                    android:id="@+id/c_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/comment"
-                    app:layout_constraintLeft_toRightOf="@+id/c_time"
-                    android:text="답글달기"
-                    android:layout_marginStart="8dp"/>
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toRightOf="@+id/a_message"
+                    app:layout_constraintTop_toTopOf="@+id/a_message"
+                    android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,32 +1,31 @@
 package kevin.android.petcoms.fragments.mypage
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import kevin.android.petcoms.R
+import kevin.android.petcoms.base.PetComsBaseFragment
 import kevin.android.petcoms.databinding.AddPetInfoBinding
-import kevin.android.petcoms.databinding.FragmentMypageBinding
 import kevin.android.petcoms.fragments.mypage.model.PostMyPet
 import kevin.android.petcoms.fragments.mypage.model.Sex
 import kevin.android.petcoms.fragments.mypage.viewmodel.MyPageViewModel
 import kotlinx.android.synthetic.main.add_pet_info.*
 
 @AndroidEntryPoint
-class AddPetInfo: Fragment() {
+class AddPetInfo : PetComsBaseFragment<AddPetInfoBinding>(R.layout.add_pet_info) {
 
-    private var addPetInfoBinding : AddPetInfoBinding? = null
     private val viewModel: MyPageViewModel by activityViewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun initViews(view: View) {
+        initButton()
+    }
 
-        val binding = AddPetInfoBinding.inflate(inflater, container, false)
-        addPetInfoBinding = binding
+    override fun observeData() {
 
+    }
+
+    private fun initButton() {
         binding.btnClose.setOnClickListener{
             val transaction= fragmentManager?.beginTransaction()
             transaction?.remove(this)?.commit()
@@ -60,25 +59,19 @@ class AddPetInfo: Fragment() {
             val transaction= fragmentManager?.beginTransaction()
             transaction?.remove(this)?.commit()
         }
-
-        return addPetInfoBinding!!.root
     }
 
     private fun postMyPet() {
         val postMyPet = PostMyPet(
-            addPetInfoBinding!!.editPetName.text.toString(),
+            binding.editPetName.text.toString(),
             21,
             "2019-01-01",
             7f,
             Sex.M,
-            3
+            3,
+            0
         )
         viewModel.postMyPet(1, postMyPet)
-    }
-
-    override fun onDestroyView() {
-        addPetInfoBinding = null
-        super.onDestroyView()
     }
 
 }

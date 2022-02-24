@@ -22,4 +22,12 @@
             android:text="삭제하기"
             android:textSize="20sp"/>
 
+    <TextView
+            android:id="@+id/change_private"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/delete_diary"
+            android:text="공개 전환하기"
+            android:textSize="20sp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
